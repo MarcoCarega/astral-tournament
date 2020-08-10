@@ -63,12 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ArenaSelected.cs" />
     <Compile Include="Assets\Classes\Armor.cs" />
     <Compile Include="Assets\Classes\Piece.cs" />
     <Compile Include="Assets\Classes\Type.cs" />
-    <Compile Include="Assets\GoToMatch.cs" />
+    <Compile Include="Assets\Purchasable.cs" />
     <Compile Include="Assets\Scripts\Arena.cs" />
+    <Compile Include="Assets\Scripts\ArenaSelected.cs" />
     <Compile Include="Assets\Scripts\Assemble.cs" />
     <Compile Include="Assets\Scripts\BackgroundMusic.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\Global.cs" />
     <Compile Include="Assets\Scripts\GoNext.cs" />
     <Compile Include="Assets\Scripts\GoToArenaUI.cs" />
+    <Compile Include="Assets\Scripts\GoToMatch.cs" />
     <Compile Include="Assets\Scripts\InputControl\Axis.cs" />
     <Compile Include="Assets\Scripts\InputControl\Controls.cs" />
     <Compile Include="Assets\Scripts\InputControl\Demo\InputControlDemo_CreateButtonsScript.cs" />
@@ -98,16 +99,16 @@
     <Compile Include="Assets\Scripts\InputControl\Inputs\MouseInput.cs" />
     <Compile Include="Assets\Scripts\InputControl\KeyMapping.cs" />
     <Compile Include="Assets\Scripts\ModeGame.cs" />
-    <Compile Include="Assets\Scripts\MonoBehavior.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\PassComponents.cs" />
     <Compile Include="Assets\Scripts\PlayClick.cs" />
-    <Compile Include="Assets\Scripts\PyramidGenerator.cs" />
     <Compile Include="Assets\Scripts\Select.cs" />
     <Compile Include="Assets\Scripts\SetupLocal.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\Stats.cs" />
     <Compile Include="Assets\Scripts\StopClick.cs" />
+    <Compile Include="Assets\Tile.cs" />
+    <Compile Include="Assets\TileSelected.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -128,19 +129,19 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Progetti/Unity/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Progetti/Unity/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Progetti/Unity/New Unity Project/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/Progetti/Unity/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Progetti/Unity/New Unity Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/Progetti/Unity/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Progetti/Unity/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Progetti/Unity/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>D:/Progetti/Unity/New Unity Project/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>D:/Progetti/Unity/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.24f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -344,7 +345,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.24f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>D:/Progetti/Unity/New Unity Project/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>D:/Progetti/Unity/astral-tournament/New Unity Project/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.24f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
