@@ -8,10 +8,10 @@ public class Assemble : MonoBehaviour
 {
     public List<Text> stats;
 
-    public Stats cannon;
-    public Stats armor;
-    public Stats engine;
-    public Stats wheel;
+    public VehicleComponent cannon;
+    public VehicleComponent armor;
+    public VehicleComponent engine;
+    public VehicleComponent wheel;
 
     private GameObject board;
 
@@ -30,9 +30,9 @@ public class Assemble : MonoBehaviour
 
     // Start is called before the first frame update
 
-    private Stats getInstanceObject(Stats game,float x, float y, float z)
+    private VehicleComponent getInstanceObject(VehicleComponent game,float x, float y, float z)
     {
-        Stats instance = instanceObject(game);
+        VehicleComponent instance = instanceObject(game);
         instance.transform.localScale = new Vector3(x, y, z);
         return instance;
     }
@@ -56,7 +56,7 @@ public class Assemble : MonoBehaviour
             {
                 /*GameObject wheel = createObject(PrimitiveType.Cylinder, "Wheel " + i, 2, 0.25f, 2);*/
 
-                Stats wheelInstance = getInstanceObject(wheel, 2, 0.25f, 2);
+                VehicleComponent wheelInstance = getInstanceObject(wheel, 2, 0.25f, 2);
                 wheelInstance.transform.rotation = Quaternion.Euler(90, 0, 90);
                // wheelInstance.transform.localScale = new Vector3(2, 0.25f, 2);
                 Vector3 pos = wheelInstance.transform.position;
@@ -69,13 +69,13 @@ public class Assemble : MonoBehaviour
                 wheelInstance.transform.SetParent(board.transform);
 
             }
-            
+
             //GameObject engine = createObject(PrimitiveType.Cube,"Engine", 2,2,2);
-            Stats engineInstance = getInstanceObject(engine, 2, 2, 2);
+            VehicleComponent engineInstance = getInstanceObject(engine, 2, 2, 2);
             //engineInstance.transform.localScale = new Vector3(2, 2, 2);
-            engineInstance.transform.Translate(0, engineInstance.transform.localScale.y / 2, -board.transform.localScale.z/2);
+            engineInstance.transform.Translate(0, engineInstance.transform.localScale.y / 2, -board.transform.localScale.z / 2);
             //GameObject armor = createObject(PrimitiveType.Capsule, "Armor", 6f, 4, 6f);
-            Stats armorInstance = getInstanceObject(armor, 6, 4, 6);
+            VehicleComponent armorInstance = getInstanceObject(armor, 6, 4, 6);
             //armorInstance.transform.localScale = new Vector3(6, 4, 6);
             armorInstance.transform.Translate(0, 0.5f + armorInstance.transform.localScale.y, 0);
             armorInstance.transform.localScale = armorInstance.transform.localScale / 4;
@@ -84,7 +84,7 @@ public class Assemble : MonoBehaviour
             armorInstance.transform.SetParent(board.transform);
 
             //GameObject cannon = getPrefab("Prefabs/Cannon");
-            Stats cannonInstance = getInstanceObject(cannon, 1, 1, 1);
+            VehicleComponent cannonInstance = getInstanceObject(cannon, 1, 1, 1);
             cannon.transform.position = new Vector3(0, 0, 0);
             //cannonInstance.transform.localScale = new Vector3(1, 1, 1);
             cannonInstance.transform.localScale = 2 * cannon.transform.localScale;
@@ -132,14 +132,14 @@ public class Assemble : MonoBehaviour
         stats[v].text = stat.ToString();
     }
 
-    private void setStats(Stats game, int v)
+    private void setStats(VehicleComponent game, int v)
     {
         float value = int.Parse(stats[v].text);
         value = game.values[0];
         stats[v].text = value.ToString();
     }
 
-    private void setStats(Stats game, int v, int w)
+    private void setStats(VehicleComponent game, int v, int w)
     {
         float value = int.Parse(stats[v].text);
         value = game.values[0];
@@ -149,16 +149,16 @@ public class Assemble : MonoBehaviour
         stats[w].text = value.ToString();
     }
 
-    public Stats instanceObject(Stats gameObject)
+    public VehicleComponent instanceObject(VehicleComponent gameObject)
     {
-        Stats game=Instantiate(gameObject) as Stats;
+        VehicleComponent game=Instantiate(gameObject) as VehicleComponent;
         game.transform.position = board.transform.position;
         game.transform.rotation = board.transform.rotation;
         //game.transform.localScale = board.transform.localScale.magnitude * game.transform.localScale;
         return game;
     }
 
-    private Vector3 setupPos(GameObject board,Stats game,Vector3 pos, int i)
+    private Vector3 setupPos(GameObject board,VehicleComponent game,Vector3 pos, int i)
     {
         float x = board.transform.localScale.x / 2 + game.transform.localScale.y;
         float z = board.transform.localScale.z / 2 + game.transform.localScale.y;

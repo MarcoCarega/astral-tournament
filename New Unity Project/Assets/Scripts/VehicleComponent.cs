@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stats : MonoBehaviour
+public class VehicleComponent : MonoBehaviour
 {
     public List<float> values;
 

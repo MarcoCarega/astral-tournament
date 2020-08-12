@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/StoreScene.unity
+- path: Assets/Scenes/BuildVehicle.unity
   isLoaded: 1
   isActive: 1

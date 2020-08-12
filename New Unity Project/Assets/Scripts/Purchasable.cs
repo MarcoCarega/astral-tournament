@@ -2,6 +2,6 @@
 
 public class Purchasable : MonoBehaviour
 {
-    public Stats component;
+    public VehicleComponent component;
     public float price;
 }

@@ -28,14 +28,14 @@ public class Movement : NetworkBehaviour
         Vector3 mousePos = Input.mousePosition;
         if (Input.GetKey(KeyCode.W))
         {
-            velocity.x += getSpeed();
+            velocity.x = getSpeed();
             
             //acc += 0.1f;
         }
         
         if (Input.GetKey(KeyCode.S))
         {
-            velocity.x -= getSpeed();
+            velocity.x = getSpeed();
             
             //acc -= 0.1f;
         }

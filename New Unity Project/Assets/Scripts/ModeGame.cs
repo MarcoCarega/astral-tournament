@@ -1,18 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-
-public class ModeGame
+public class ModeGame : NetworkBehaviour
 {
-    public string mode;
-
-    public Character characterSelected;
-
-    public Arena arena;
-
-    public Assemble vehicle;
-
-
-   
+    
+    
 }

@@ -10,14 +10,18 @@ public class Select : MonoBehaviour
     public Button left;
     public Button right;
     public RawImage choice;
+    public string key;
+    private bool first;
 
-    public List<Stats> images;
+    private static Dictionary<string, VehicleComponent> set;
 
-    private Stats selected;
+    public List<VehicleComponent> images;
+
+    private VehicleComponent selected;
 
     public static bool changed;
 
-    public Stats getSelected()
+    public VehicleComponent getSelected()
     {
         return selected;
     }
@@ -25,30 +29,54 @@ public class Select : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        first = false;
+        set = new Dictionary<string, VehicleComponent>();
         changed= false;
         current = 0;
-        left.onClick.AddListener(() =>
-            {
-                changed = true;
-                current = (current - 1);
-                if (current == -1) current = images.Count - 1;
-            });
-        right.onClick.AddListener(() =>
-        {
-            changed = true;
-            current = (current + 1)%images.Count;
-        });
+        left.onClick.AddListener(onLeft);
+        right.onClick.AddListener(onRight);
         selected = images[current];
+    }
+
+    private void onLeft()
+    {
+        changed = true;
+        current = (current - 1);
+        if (current == -1) current = images.Count - 1;
+        setComponents();
+    }
+
+    private void onRight()
+    {
+        changed = true;
+        current = (current + 1) % images.Count;
+        setComponents();
+    }
+
+    private void setComponents()
+    {
+        selected = images[current];
+        if (!set.ContainsKey(key))
+            set.Add(key, selected);
+        else set[key] = selected;
     }
         // Update is called once per frame
     void Update()
     {
         //print(images[current]);
         //changed = true;
-        Stats obj = images[current];
-        choice.texture = obj.GetComponent<Renderer>().sharedMaterial.mainTexture;
-        print(choice.texture);
-        selected = images[current];
+        
+        choice.texture = images[current].GetComponent<Renderer>().sharedMaterial.mainTexture;
+        
+        if (!set.ContainsKey(key)) set.Add(key, selected);
+        else set[key] = selected;
+      
     }
 
+    public static Dictionary<string, VehicleComponent> getSet()
+    {
+        return set;
+    }
+
+    
 }

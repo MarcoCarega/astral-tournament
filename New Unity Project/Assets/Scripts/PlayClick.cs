@@ -9,7 +9,6 @@ public class PlayClick : MonoBehaviour
 {
     // Start is called before the first frame update
     public Button button;
-    public ModeGame mode;
     private Global global;
 
     void Start()

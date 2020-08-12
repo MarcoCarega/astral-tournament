@@ -8,6 +8,7 @@ public class PassComponents : MonoBehaviour
     public List<Select> selectors;
     public Assemble astroMachine;
 
+
     void Start()
     {
         Update();

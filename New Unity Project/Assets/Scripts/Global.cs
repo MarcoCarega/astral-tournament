@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Global : MonoBehaviour
 {
@@ -11,17 +12,15 @@ public class Global : MonoBehaviour
 
     private Character character;
 
-    private Assemble vehicle;
+    private Vehicle vehicle;
 
-    private GameObject groupCharacters;
+    private GameObject group;
 
-    private GameObject groupVehicles;
-
-    private GameObject groupArenas;
-
-    public Arena arena;
+    private Arena arena;
 
     private static List<GameObject> queue;
+
+    public NetworkManager netManager;
 
     public static Global Instance
     {
@@ -33,17 +32,20 @@ public class Global : MonoBehaviour
         }
     }
 
-    public void addVehicle(Assemble v)
+    public void addVehicle(Vehicle v)
     {
-        if (groupVehicles == null)
-            groupVehicles = new GameObject();
-        if (groupVehicles.transform.childCount > 0)
+        if (group == null)
+            group = new GameObject();
+        if (group.transform.childCount > 0)
         {
-            Destroy(groupVehicles);
-            groupVehicles = new GameObject();
+            Destroy(group);
+            group = new GameObject();
         }
-        this.vehicle = Instantiate(v) as Assemble;
-        this.vehicle.transform.SetParent(groupVehicles.transform);
+        group.name = "Group";
+        this.vehicle = Instantiate(v) as Vehicle;
+        this.vehicle.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //this.vehicle.transform.position = new Vector3(0, 0, 0);
+        this.vehicle.transform.SetParent(group.transform);
     }
 
     internal Arena GetArena()
@@ -53,16 +55,23 @@ public class Global : MonoBehaviour
 
     public void addArena(Arena a)
     {
-        if (groupArenas == null)
-            groupArenas = new GameObject();
-        if (groupArenas.transform.childCount > 0)
+        if (group == null)
+            group = new GameObject();
+        if (group.transform.childCount > 0)
         {
-            Destroy(groupArenas);
-            groupArenas = new GameObject();
+            Destroy(group);
+            group = new GameObject();
         }
         this.arena = Instantiate(a) as Arena;
+        //this.arena.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //this.vehicle.transform.position = new Vector3(0, 0, 0);
         this.arena.transform.Translate(this.arena.transform.localScale.x, this.arena.transform.localScale.y, this.arena.transform.localScale.z);
-        this.arena.transform.SetParent(groupArenas.transform);
+        this.arena.transform.SetParent(group.transform);
+    }
+
+    internal void removeVehicle()
+    {
+        Destroy(this.vehicle);
     }
 
     internal bool hasArena()
@@ -75,28 +84,30 @@ public class Global : MonoBehaviour
         return character;
     }
 
-    public Assemble GetVehicle()
+    public Vehicle GetVehicle()
     {
         return vehicle;
     }
 
     public void addCharacter(Character c)
     {
-        if (groupCharacters == null)
-            groupCharacters = new GameObject();
+        if (group == null)
+            group = new GameObject();
         //Character tmp = this.character;
         //print(this.character);
         //Character[] objs = GameObject.FindObjectsOfType<Character>();
         //GameObject[] objs = GameObject.FindGameObjectsWithTag("character");
         //if (objs.Length>0)
         // for(int i=0;i<objs.Length;i++)
-        if (groupCharacters.transform.childCount > 0)
+        if (group.transform.childCount > 0)
         {
-            Destroy(groupCharacters);
-            groupCharacters = new GameObject();
+            Destroy(group);
+            group = new GameObject();
         }
         this.character = Instantiate(c) as Character;
-        this.character.transform.SetParent(groupCharacters.transform);
+        //this.character.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //this.character.transform.position = new Vector3(0, 0, 0);
+        this.character.transform.SetParent(group.transform);
         //this.character.tag = "character";
         //DontDestroyOnLoad(this.character);
     }
