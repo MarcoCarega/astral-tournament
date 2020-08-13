@@ -9,7 +9,7 @@ public class VehicleMovement : MonoBehaviour
     public Vehicle vehicle;
     private Vector3 velocity;
     private int curve;
-    private int forward;
+    //private int forward;
     private float speed;
 
     [Range(0f, 1f)]
@@ -70,21 +70,24 @@ public class VehicleMovement : MonoBehaviour
             velocity.z += getVelocity(acc);
             //vehicle.transform.Translate(velocity);
         }
+        else velocity *= (1 - drag);
         if (Input.GetKey(KeyCode.A))
         {
             //curve = -1;
-            float angle = -getAngle(velocity.x);
+            float angle = -getAngle(velocity.z);
             vehicle.transform.Rotate(0, angle, 0);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             //curve = 1;
-            float angle = getAngle(velocity.x);
+            float angle = getAngle(velocity.z);
             vehicle.transform.Rotate(0, angle, 0);
         }
-        
-        velocity *= (1 - drag);
+        else curve = 0;
+
+        //velocity *= (1 - drag);
         velocity.z = (velocity.z > 0) ? Mathf.Min(velocity.z, speed) : Mathf.Max(velocity.z, -speed);
+        //print(velocity);
         vehicle.transform.Translate(velocity);
         //velocity.x += getVelocity(acc);
         print(velocity);
@@ -96,12 +99,17 @@ public class VehicleMovement : MonoBehaviour
 
     private float getAngle(float velocity)
     {
-        float angle = vehicle.maneuverability / 10;// * Time.deltaTime;
+        curve = 0;
+        if (velocity > 0) curve = 1;
+        else if (velocity < 0) curve = -1;
+        else curve = 0;
+        print(curve);
+        float angle = curve*vehicle.maneuverability / 10;// * Time.deltaTime;
         return angle;
     }
 
     private float getVelocity(float acceleration)
     {
-        return (speed+acceleration) * Time.deltaTime;
+        return acceleration*5 * Time.deltaTime;
     }
 }
