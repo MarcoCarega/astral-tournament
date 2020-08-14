@@ -35,18 +35,18 @@ public class Movement : NetworkBehaviour
         
         if (Input.GetKey(KeyCode.S))
         {
-            velocity.x = getSpeed();
+            velocity.x = -getSpeed();
             
             //acc -= 0.1f;
         }
         
         if (Input.GetKey(KeyCode.A) && velocity.normalized.x!=0)
         {
-            transform.Rotate(0,-angle,0);
+            transform.Rotate(0,-angle/10,0);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(0,angle,0);
+            transform.Rotate(0,angle/10,0);
         }
         if (Input.GetKey(KeyCode.M))
         {
@@ -56,11 +56,11 @@ public class Movement : NetworkBehaviour
         //if(acc!=0)
         //   acc = (acc >= 0) ? Mathf.Min(acc - 0.1f, 1) : Mathf.Max(acc + 0.1f, -1);
         //print(acc);
-        if (!controller.isGrounded) velocity.y *= gravity();
+        /*if (!controller.isGrounded) velocity.y *= gravity();
         else
         {
             velocity.y = 7;
-        }
+        }*/
         if (velocity.x>0) velocity.x = Mathf.Min(velocity.x, speedLimit);
         else velocity.x= Mathf.Max(velocity.x, -speedLimit);
         velocity *=drag;
@@ -77,7 +77,7 @@ public class Movement : NetworkBehaviour
 
     private float getSpeed()
     {
-        return speed * Time.deltaTime;
+        return speed/10;// *10 * Time.deltaTime;
     }
 
     private float getAngle()
