@@ -22,6 +22,8 @@ public class Global : MonoBehaviour
 
     public NetworkManager netManager;
 
+    public MatchMaker matchMaker;
+
     private GameObject player;
 
     public static Global Instance

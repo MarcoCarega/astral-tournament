@@ -18,6 +18,8 @@ public class CreateMatch : MonoBehaviour
 
     private void onClick()
     {
+        InputField textbox = GameObject.Find("Canvas/CreateTextBox").GetComponent<InputField>();
+        global.matchMaker.CreateInternetMatch(textbox.text);
         GameObject player = GameObject.Find("Player");
         if(!global.netManager.isNetworkActive)
         {
@@ -34,7 +36,7 @@ public class CreateMatch : MonoBehaviour
         player.name = "Player";
         player.AddComponent<NetworkIdentity>();
         player.AddComponent<NetworkTransform>();
-        global.netManager.StartHost();
+        //global.netManager.StartHost();
         global.netManager.playerPrefab = player;
         string host = string.Format("Host started on {0}:{1}", global.netManager.networkAddress, global.netManager.networkPort);
         print(host);

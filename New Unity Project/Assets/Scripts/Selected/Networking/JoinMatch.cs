@@ -23,15 +23,17 @@ public class JoinMatch : MonoBehaviour
     {
         try
         {
-            if(!global.netManager.IsClientConnected())
+
+            /*if(!global.netManager.IsClientConnected())
             {
-                string text = textbox.text;
+                //string text = textbox.text;
                 //string match = "[0-9]{1,3}(\.?)[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}";
-                global.netManager.networkAddress = text;
+                //global.netManager.networkAddress = text;
                 //global.netManager.networkPort = 7778;
                 global.netManager.StartClient();
                 print(string.Format("Client binding on {0}:{1}", text, global.netManager.networkAddress));
-            }
+            }*/
+            global.matchMaker.FindInternetMatch(textbox.text);
         }
         catch(Exception e)
         {
