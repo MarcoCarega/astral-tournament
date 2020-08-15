@@ -28,7 +28,7 @@ public class GoToMatch : MonoBehaviour
         Arena arena = global.GetArena();
         arena.transform.SetParent(null);
         DontDestroyOnLoad(arena);
-        SceneManager.LoadScene("VehicleMovement");
+        SceneManager.LoadScene("MatchmakeScene");
     }
 
     // Update is called once per frame

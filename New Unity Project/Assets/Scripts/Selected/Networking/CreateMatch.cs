@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class CreateMatch : MonoBehaviour
 {
     private Global global;
+    private bool done=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,26 +27,35 @@ public class CreateMatch : MonoBehaviour
             player = setupPlayer();
             if(global.netManager.IsClientConnected())
                 global.AddPlayer(player);
+            
         }
         else print("The player is already set up");
     }
 
     private GameObject setupPlayer()
     {
-        GameObject player = new GameObject();
-        player.name = "Player";
-        player.AddComponent<NetworkIdentity>();
-        player.AddComponent<NetworkTransform>();
+        Vehicle vehicle = global.GetVehicle();
+        vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
+        vehicle.gameObject.AddComponent<NetworkTransform>();
         //global.netManager.StartHost();
-        global.netManager.playerPrefab = player;
+        global.netManager.playerPrefab = vehicle.gameObject;
         string host = string.Format("Host started on {0}:{1}", global.netManager.networkAddress, global.netManager.networkPort);
         print(host);
-        return player;
+        return vehicle.gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
+        GameObject vehicle = GameObject.Find("Astromachine(Clone)(Clone)");
+        if (vehicle != null && !done)
+        {
+            vehicle.GetComponent<SetupLocal>().enabled = true;
+            global.netManager.playerPrefab = vehicle;
+            Destroy(GameObject.Find("Astromachine(Clone)"));
+            done = true;
+        }
+        
     }
 }

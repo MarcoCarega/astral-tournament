@@ -15,7 +15,7 @@ public class PlayerStatus : MonoBehaviour
     void Update()
     {
         if (transform.childCount != 2)
-            GetComponent<Movement>().enabled = false;
-        else GetComponent<Movement>().enabled = true;
+            GetComponent<VehicleMovement>().enabled = false;
+        else GetComponent<VehicleMovement>().enabled = true;
     }
 }
