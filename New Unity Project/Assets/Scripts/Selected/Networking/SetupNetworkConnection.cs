@@ -38,13 +38,14 @@ public class SetupNetworkConnection : MonoBehaviour
 
     private GameObject setupPlayer()
     {
-        Vehicle vehicle = global.GetVehicle();
+        Vehicle vehicle = global.GetVehicle().GetComponent<Vehicle>();
         vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
         vehicle.gameObject.AddComponent<NetworkTransform>();
         vehicle.gameObject.AddComponent<Rigidbody>();
         //vehicle.gameObject.AddComponent<VehicleMovement>().enabled = false;
         vehicle.gameObject.AddComponent<SetupLocal>();
         //global.netManager.StartHost();
+        ClientScene.RegisterPrefab(vehicle.gameObject);
         global.netManager.playerPrefab = vehicle.gameObject;
         //string host = string.Format("Host started on {0}:{1}", global.netManager.networkAddress, global.netManager.networkPort);
         //print(host);

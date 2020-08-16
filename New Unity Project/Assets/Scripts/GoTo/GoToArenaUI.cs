@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,8 +28,10 @@ public class GoToArenaUI : MonoBehaviour
         //print(vehicle);
         vehicle.blocked = true;
         //vehicle.transform.SetParent(null);
-        global.addVehicle(vehicle);
+        GameObject game=PrefabUtility.SaveAsPrefabAssetAndConnect(vehicle.gameObject, "Assets/Resources/Prefabs/Astromachine.prefab", InteractionMode.UserAction);
+        global.addVehicle(game);
         global.GetVehicle().transform.SetParent(null);
+        
         DontDestroyOnLoad(global.GetVehicle());
         SceneManager.LoadScene("SelectArena");
         //DontDestroyOnLoad(game);

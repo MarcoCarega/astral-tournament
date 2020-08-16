@@ -12,7 +12,7 @@ public class Global : MonoBehaviour
 
     private Character character;
 
-    private Vehicle vehicle;
+    private GameObject vehicle;
 
     private GameObject group;
 
@@ -36,20 +36,21 @@ public class Global : MonoBehaviour
         }
     }
 
-    public void addVehicle(Vehicle v)
+    public void addVehicle(GameObject v)
     {
-        if (group == null)
-            group = new GameObject();
-        if (group.transform.childCount > 0)
-        {
-            Destroy(group);
-            group = new GameObject();
-        }
-        group.name = "Group";
-        this.vehicle = Instantiate(v) as Vehicle;
-        this.vehicle.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //this.vehicle.transform.position = new Vector3(0, 0, 0);
-        this.vehicle.transform.SetParent(group.transform);
+        /* if (group == null)
+             group = new GameObject();
+         if (group.transform.childCount > 0)
+         {
+             Destroy(group);
+             group = new GameObject();
+         }
+         group.name = "Group";
+         this.vehicle = Instantiate(v) as Vehicle;
+         this.vehicle.transform.rotation = Quaternion.Euler(0, 0, 0);
+         //this.vehicle.transform.position = new Vector3(0, 0, 0);
+         this.vehicle.transform.SetParent(group.transform);*/
+        vehicle = v;
     }
 
     internal void AddPlayer(GameObject player)
@@ -95,7 +96,7 @@ public class Global : MonoBehaviour
         return character;
     }
 
-    public Vehicle GetVehicle()
+    public GameObject GetVehicle()
     {
         return vehicle;
     }

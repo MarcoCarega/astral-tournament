@@ -12,6 +12,11 @@ public class MatchMaker : MonoBehaviour
         //print("STARTED");
     }
 
+    private void Update()
+    {
+        ClientScene.RegisterPrefab(GameObject.Find("Astromachine(Clone)(Clone)"));
+    }
+
     //call this method to request a match to be created on the server
     public void CreateInternetMatch(string matchName)
     {

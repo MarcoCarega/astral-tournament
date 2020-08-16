@@ -34,7 +34,7 @@ public class CreateMatch : MonoBehaviour
 
     private GameObject setupPlayer()
     {
-        Vehicle vehicle = global.GetVehicle();
+        Vehicle vehicle = global.GetVehicle().GetComponent<Vehicle>();
         vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
         vehicle.gameObject.AddComponent<NetworkTransform>();
         //global.netManager.StartHost();
