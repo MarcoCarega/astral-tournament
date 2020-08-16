@@ -24,9 +24,9 @@ public class CreateMatch : MonoBehaviour
         GameObject player = GameObject.Find("Player");
         if(!global.netManager.isNetworkActive)
         {
-            player = setupPlayer();
+           /*player = setupPlayer();
             if(global.netManager.IsClientConnected())
-                global.AddPlayer(player);
+                global.AddPlayer(player);*/
             
         }
         else print("The player is already set up");

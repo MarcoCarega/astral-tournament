@@ -6,7 +6,7 @@ using UnityEngine;
 public class VehicleMovement : MonoBehaviour
 {
     private Global global;
-    public Vehicle vehicle;
+    private Vehicle vehicle;
     private Vector3 velocity;
     private int curve;
     //private int forward;
@@ -20,6 +20,7 @@ public class VehicleMovement : MonoBehaviour
         camera.transform.rotation = cameraPos.transform.rotation;
         camera.transform.position = cameraPos.transform.position;//new Vector3(transform.position.x - 50,transform.position.y+50,transform.position.z);
         camera.transform.LookAt(vehicle.transform.position);
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,8 @@ public class VehicleMovement : MonoBehaviour
         global = Global.Instance;
         velocity = new Vector3(0, 0, 0);
         vehicle = global.GetVehicle();
-        vehicle.transform.position = transform.position;
+        //vehicle = GameObject.Find("Astromachine(Clone)").GetComponent<Vehicle>();
+        //vehicle.transform.position = transform.position;
         //vehicle.transform.SetParent(transform);
         
         //Vector3 vehiclePos = vehicle.transform.localRotation.eulerAngles;
@@ -44,15 +46,15 @@ public class VehicleMovement : MonoBehaviour
         //Vector3 rotation = transform.rotation.eulerAngles;
         //rotation.y -= 90;
         //transform.rotation = Quaternion.Euler(rotation);
-        GameObject cameraPos = new GameObject();
-        Vector3 pos = transform.position;
-        pos.x -= 20;
-        pos.y += 20;
-        cameraPos.transform.position = pos;
-        cameraPos.transform.SetParent(vehicle.transform);
+        //GameObject cameraPos = new GameObject();
+        //Vector3 pos = transform.position;
+        //pos.x -= 20;
+        //pos.y += 20;
+        //cameraPos.transform.position = pos;
+        //cameraPos.transform.SetParent(vehicle.transform);
         //cameraPos.transform.position = new Vector3(0, 77, 0);
-        cameraPos.transform.position = new Vector3(20,100, 0);
-        setupCamera(cameraPos);
+        //cameraPos.transform.position = new Vector3(20,100, 0);
+        //setupCamera(cameraPos);
     }
 
     // Update is called once per frame
@@ -62,12 +64,12 @@ public class VehicleMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             //forward = 1;
-            velocity.z -= getVelocity(acc);
+            velocity.z += getVelocity(acc);
         }
         else if (Input.GetKey(KeyCode.S))
         {
             //forward = -1;
-            velocity.z += getVelocity(acc);
+            velocity.z -= getVelocity(acc);
             //vehicle.transform.Translate(velocity);
         }
         else velocity *= (1 - drag);
@@ -75,22 +77,22 @@ public class VehicleMovement : MonoBehaviour
         {
             //curve = -1;
             float angle = -getAngle(velocity.z);
-            vehicle.transform.Rotate(0, angle, 0);
+            transform.Rotate(0, angle, 0);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             //curve = 1;
             float angle = getAngle(velocity.z);
-            vehicle.transform.Rotate(0, angle, 0);
+            transform.Rotate(0, angle, 0);
         }
         else curve = 0;
 
         //velocity *= (1 - drag);
         velocity.z = (velocity.z > 0) ? Mathf.Min(velocity.z, speed) : Mathf.Max(velocity.z, -speed);
         //print(velocity);
-        vehicle.transform.Translate(velocity);
+        transform.Translate(velocity);
         //velocity.x += getVelocity(acc);
-        print(velocity);
+        //print(velocity);
         //float angle = getAngle(velocity.x);
         //print(angle);
 
@@ -103,7 +105,7 @@ public class VehicleMovement : MonoBehaviour
         if (velocity > 0) curve = 1;
         else if (velocity < 0) curve = -1;
         else curve = 0;
-        print(curve);
+        //print(curve);
         float angle = curve*vehicle.maneuverability / 10;// * Time.deltaTime;
         return angle;
     }

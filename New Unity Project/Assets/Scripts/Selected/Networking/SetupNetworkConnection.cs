@@ -41,6 +41,7 @@ public class SetupNetworkConnection : MonoBehaviour
         Vehicle vehicle = global.GetVehicle();
         vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
         vehicle.gameObject.AddComponent<NetworkTransform>();
+        vehicle.gameObject.AddComponent<Rigidbody>();
         //vehicle.gameObject.AddComponent<VehicleMovement>().enabled = false;
         vehicle.gameObject.AddComponent<SetupLocal>();
         //global.netManager.StartHost();

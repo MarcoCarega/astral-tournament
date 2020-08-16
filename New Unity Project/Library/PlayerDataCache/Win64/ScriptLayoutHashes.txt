@@ -6,8 +6,8 @@ Assets/Scenes/MenuScene.unity
 Assets/Scenes/BuildVehicle.unity
 Assets/Scenes/SelectArena.unity
 Assets/Scenes/SelectCharacter.unity
-Assets/VehicleMovement.unity
-Assets/MatchmakeScene.unity
+Assets/Scenes/VehicleMovement.unity
+Assets/Scenes/MatchmakeScene.unity
 SceneListEnd?
 3c08375166df118bd1801438fc36b92f Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 77c21079ace8d76ce6e941d3dabbfe6e Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -127,7 +127,7 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 87cdcd5cef72dc647c7bfb374daa3a9c Assembly-CSharp.dll:.CharacterSelected
 e89b1f149a75d1b6b3cb02fc94b3715b Assembly-CSharp.dll:.ArenaSelected
-195a5368873f3e0f13ab1c0c34257c0b Assembly-CSharp.dll:.VehicleMovement
+80618496ccd0966f3c70a1b399ca9e40 Assembly-CSharp.dll:.VehicleMovement
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 802039bce57eda927d417f793beb83bb Assembly-CSharp.dll:.TileSelected
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset

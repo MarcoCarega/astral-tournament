@@ -43,7 +43,6 @@ public class GoNext : MonoBehaviour
                 done = true;
             }
             Character c = global.GetCharacter();
-            print(c.charactName);
             selectedCharacter.color = new Color(c.color.r, c.color.g, c.color.b, 1);
             story.text = c.charactName;
             //story.enabled = true;
