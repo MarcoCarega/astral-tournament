@@ -14,7 +14,7 @@ public class MatchMaker : MonoBehaviour
 
     private void Update()
     {
-        ClientScene.RegisterPrefab(GameObject.Find("Astromachine(Clone)(Clone)"));
+       // ClientScene.RegisterPrefab(GameObject.Find("Astromachine(Clone)(Clone)"));
     }
 
     //call this method to request a match to be created on the server

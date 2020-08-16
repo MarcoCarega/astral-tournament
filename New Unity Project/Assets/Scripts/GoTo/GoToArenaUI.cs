@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -29,6 +30,8 @@ public class GoToArenaUI : MonoBehaviour
         //print(vehicle);
         vehicle.blocked = true;
         //vehicle.transform.SetParent(null);
+        vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
+        vehicle.gameObject.AddComponent<NetworkTransform>();
         GameObject game = PrefabUtility.SaveAsPrefabAssetAndConnect(vehicle.gameObject, "Assets/Resources/Prefabs/Astromachine.prefab", InteractionMode.UserAction);
         global.addVehicle(game);
         global.GetVehicle().transform.SetParent(null);

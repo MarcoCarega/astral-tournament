@@ -35,8 +35,7 @@ public class CreateMatch : MonoBehaviour
     private GameObject setupPlayer()
     {
         Vehicle vehicle = global.GetVehicle().GetComponent<Vehicle>();
-        vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
-        vehicle.gameObject.AddComponent<NetworkTransform>();
+        
         //global.netManager.StartHost();
         global.netManager.playerPrefab = vehicle.gameObject;
         string host = string.Format("Host started on {0}:{1}", global.netManager.networkAddress, global.netManager.networkPort);
@@ -48,5 +47,14 @@ public class CreateMatch : MonoBehaviour
     void Update()
     {
 
+        GameObject vehicle = GameObject.Find("Astromachine(Clone)(Clone)");
+        if (vehicle != null && !done)
+        {
+            vehicle.GetComponent<SetupLocal>().enabled = true;
+            global.netManager.playerPrefab = vehicle;
+            Destroy(GameObject.Find("Astromachine(Clone)"));
+            done = true;
+        }
+        
     }
 }
