@@ -25,6 +25,8 @@ public class SetupNetworkConnection : MonoBehaviour
             Destroy(global.netManager);
         }
         global.netManager = new GameObject().AddComponent<NetworkManager>();
+        NetworkManagerHUD hud= global.netManager.gameObject.AddComponent<NetworkManagerHUD>();
+        //hud.showGUI = false;
         global.netManager.name = "NetworkManager";
         matchMaker = new GameObject().AddComponent<MatchMaker>();
         matchMaker.name = "MatchMaker";
