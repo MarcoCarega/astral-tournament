@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 
 public class SetupLocal : NetworkBehaviour
 {
+    
+
     private GameObject player;
     private Global global;
     // Start is called before the first frame update

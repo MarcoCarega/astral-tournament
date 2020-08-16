@@ -48,14 +48,5 @@ public class CreateMatch : MonoBehaviour
     void Update()
     {
 
-        GameObject vehicle = GameObject.Find("Astromachine(Clone)(Clone)");
-        if (vehicle != null && !done)
-        {
-            vehicle.GetComponent<SetupLocal>().enabled = true;
-            global.netManager.playerPrefab = vehicle;
-            Destroy(GameObject.Find("Astromachine(Clone)"));
-            done = true;
-        }
-        
     }
 }

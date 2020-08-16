@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class GoToArenaUI : MonoBehaviour
 {
+
     //public Vehicle astroMachine;
     private Global global;
     public Vehicle vehicle;
@@ -28,7 +29,7 @@ public class GoToArenaUI : MonoBehaviour
         //print(vehicle);
         vehicle.blocked = true;
         //vehicle.transform.SetParent(null);
-        GameObject game=PrefabUtility.SaveAsPrefabAssetAndConnect(vehicle.gameObject, "Assets/Resources/Prefabs/Astromachine.prefab", InteractionMode.UserAction);
+        GameObject game = PrefabUtility.SaveAsPrefabAssetAndConnect(vehicle.gameObject, "Assets/Resources/Prefabs/Astromachine.prefab", InteractionMode.UserAction);
         global.addVehicle(game);
         global.GetVehicle().transform.SetParent(null);
         
