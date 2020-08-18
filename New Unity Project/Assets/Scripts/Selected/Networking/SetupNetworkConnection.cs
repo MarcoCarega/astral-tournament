@@ -23,9 +23,11 @@ public class SetupNetworkConnection : MonoBehaviour
         {
             Destroy(global.matchMaker);
             Destroy(global.netManager);
+            Destroy(global.lobby);
         }
+        //global.lobby = new GameObject("Lobby").AddComponent<NetworkLobbyManager>();
         global.netManager = new GameObject().AddComponent<NetworkManager>();
-        NetworkManagerHUD hud= global.netManager.gameObject.AddComponent<NetworkManagerHUD>();
+        //NetworkManagerHUD hud= global.netManager.gameObject.AddComponent<NetworkManagerHUD>();
         //hud.showGUI = false;
         global.netManager.name = "NetworkManager";
         matchMaker = new GameObject().AddComponent<MatchMaker>();
@@ -33,7 +35,10 @@ public class SetupNetworkConnection : MonoBehaviour
         DontDestroyOnLoad(matchMaker);
         global.matchMaker = matchMaker;
         global.netManager.onlineScene = "VehicleMovement";
-        global.netManager.playerPrefab = setupPlayer();
+        //GameObject game= setupPlayer();
+        //print(game);
+        //DontDestroyOnLoad(game);
+        global.netManager.playerPrefab =setupPlayer();
         //global.netManager.autoCreatePlayer = false;
         //global.netManager = netManager;
     }
@@ -41,17 +46,20 @@ public class SetupNetworkConnection : MonoBehaviour
     private GameObject setupPlayer()
     {
         Vehicle vehicle = global.GetVehicle().GetComponent<Vehicle>();
+        GameObject game = vehicle.createNetworkInstance();
         //vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
         //vehicle.gameObject.AddComponent<NetworkTransform>();
-        vehicle.gameObject.AddComponent<Rigidbody>();
+        //game.AddComponent<Rigidbody>();
         //vehicle.gameObject.AddComponent<VehicleMovement>().enabled = false;
-        vehicle.gameObject.AddComponent<SetupLocal>();
+        game.AddComponent<SetupLocal>();
         //global.netManager.StartHost();
-        ClientScene.RegisterPrefab(vehicle.gameObject);
-        global.netManager.playerPrefab = vehicle.gameObject;
+        ClientScene.RegisterPrefab(game,NetworkHash128.Parse(vehicle.name));
+        
+        global.netManager.playerPrefab = game;
         //string host = string.Format("Host started on {0}:{1}", global.netManager.networkAddress, global.netManager.networkPort);
         //print(host);
-        return vehicle.gameObject;
+
+        return game;//.createNetworkInstance();
     }
 
     // Update is called once per frame

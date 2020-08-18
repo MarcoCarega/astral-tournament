@@ -30,17 +30,27 @@ public class Vehicle : MonoBehaviour
     public float maneuverability=0;
     public bool blocked;
     private Dictionary<string, VehicleComponent> set;
+
+    private VehicleComponent cannon;
+    private VehicleComponent armor;
+    private VehicleComponent engine;
+    private VehicleComponent wheel;
+
+    private GameObject net;
+
     // Start is called before the first frame update
     void Start()
     {
         first = true;
         global = Global.Instance;
+        net = GameObject.Find("NetVehicle");
+        print(net);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Dictionary<string, VehicleComponent> set = Select.getSet();
+        set = Select.getSet();
         if (first)
         {
             Select.changed = true;
@@ -54,21 +64,37 @@ public class Vehicle : MonoBehaviour
             board = createObject(PrimitiveType.Cube, "Board", 5, 1, 7);
             for (int i = 0; i < 4; i++)
             {
-                VehicleComponent wheel = createWheel(set["wheel"],i);
+                wheel = createWheel(set["wheel"],i);
                 wheel.transform.SetParent(board.transform);
             }
-            VehicleComponent engine = createEngine(set["engine"]);
+            engine = createEngine(set["engine"]);
             engine.transform.SetParent(board.transform);
-            VehicleComponent armor = createArmor(set["armor"]);
+            armor = createArmor(set["armor"]);
             armor.transform.SetParent(board.transform);
-            VehicleComponent cannon = createCannon(set["cannon"]);
+            cannon = createCannon(set["cannon"]);
             cannon.transform.SetParent(board.transform);
             adjustVehicleForUI();
             setStats(set);
             //global.addVehicle(GetComponent<Vehicle>());
             Select.changed = false;
-            
+            net = createNetVehicle();
+            DontDestroyOnLoad(net);
         }
+    }
+
+    private GameObject createNetVehicle()
+    {
+        GameObject game = GameObject.Find("NetVehicle");
+        if (game != null) Destroy(game);
+        game = new GameObject("NetVehicle");
+        NetworkVehicle net = game.AddComponent<NetworkVehicle>();
+        print(game);
+        print(cannon);
+        net.cannon = cannon.name;
+        net.armor = armor.name;
+        net.engine = engine.name;
+        net.wheel = wheel.name;
+        return game;
     }
 
     private void adjustVehicleForUI()
@@ -202,5 +228,8 @@ public class Vehicle : MonoBehaviour
                 comp.GetComponentsInChildren<Text>()[1].text = stat.ToString();
     }
 
-    
+    public GameObject createNetworkInstance()
+    {
+        return net;
+    }
 }

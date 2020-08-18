@@ -87,9 +87,11 @@
     <Compile Include="Assets\Scripts\Player\VehicleMovement.cs" />
     <Compile Include="Assets\Scripts\Selected\ArenaSelected.cs" />
     <Compile Include="Assets\Scripts\Selected\CharacterSelected.cs" />
+    <Compile Include="Assets\Scripts\Selected\Networking\AstralNetwork.cs" />
     <Compile Include="Assets\Scripts\Selected\Networking\CreateMatch.cs" />
     <Compile Include="Assets\Scripts\Selected\Networking\JoinMatch.cs" />
     <Compile Include="Assets\Scripts\Selected\Networking\MatchMaker.cs" />
+    <Compile Include="Assets\Scripts\Selected\Networking\NetworkVehicle.cs" />
     <Compile Include="Assets\Scripts\Selected\Networking\SetupLocal.cs" />
     <Compile Include="Assets\Scripts\Selected\Networking\SetupNetworkConnection.cs" />
     <Compile Include="Assets\Scripts\Selected\Select.cs" />

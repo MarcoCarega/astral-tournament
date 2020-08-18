@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -31,11 +31,10 @@ public class GoToArenaUI : MonoBehaviour
         vehicle.blocked = true;
         //vehicle.transform.SetParent(null);
         vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
-        vehicle.gameObject.AddComponent<NetworkTransform>();
-        GameObject game = PrefabUtility.SaveAsPrefabAssetAndConnect(vehicle.gameObject, "Assets/Resources/Prefabs/Astromachine.prefab", InteractionMode.UserAction);
-        global.addVehicle(game);
+        vehicle.gameObject.AddComponent<NetworkTransform>().transformSyncMode=NetworkTransform.TransformSyncMode.SyncTransform;
+        //GameObject game = PrefabUtility.SaveAsPrefabAssetAndConnect(vehicle.gameObject, "Assets/Resources/Prefabs/Astromachine.prefab", InteractionMode.UserAction);
+        global.addVehicle(vehicle);
         global.GetVehicle().transform.SetParent(null);
-        
         DontDestroyOnLoad(global.GetVehicle());
         SceneManager.LoadScene("SelectArena");
         //DontDestroyOnLoad(game);

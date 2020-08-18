@@ -12,7 +12,7 @@ public class Global : MonoBehaviour
 
     private Character character;
 
-    private GameObject vehicle;
+    private Vehicle vehicle;
 
     private GameObject group;
 
@@ -25,6 +25,7 @@ public class Global : MonoBehaviour
     public MatchMaker matchMaker;
 
     private GameObject player;
+    public NetworkLobbyManager lobby;
 
     public static Global Instance
     {
@@ -36,9 +37,9 @@ public class Global : MonoBehaviour
         }
     }
 
-    public void addVehicle(GameObject v)
+    public void addVehicle(Vehicle v)
     {
-        /* if (group == null)
+         if (group == null)
              group = new GameObject();
          if (group.transform.childCount > 0)
          {
@@ -49,8 +50,8 @@ public class Global : MonoBehaviour
          this.vehicle = Instantiate(v) as Vehicle;
          this.vehicle.transform.rotation = Quaternion.Euler(0, 0, 0);
          //this.vehicle.transform.position = new Vector3(0, 0, 0);
-         this.vehicle.transform.SetParent(group.transform);*/
-        vehicle = v;
+         this.vehicle.transform.SetParent(group.transform);
+        //vehicle = v;
     }
 
     internal void AddPlayer(GameObject player)
@@ -96,7 +97,7 @@ public class Global : MonoBehaviour
         return character;
     }
 
-    public GameObject GetVehicle()
+    public Vehicle GetVehicle()
     {
         return vehicle;
     }
