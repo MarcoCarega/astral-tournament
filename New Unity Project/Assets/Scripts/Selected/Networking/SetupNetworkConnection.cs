@@ -58,6 +58,12 @@ public class SetupNetworkConnection : MonoBehaviour
         
 
         global.netManager.playerPrefab = game;
+        foreach (GameObject obj in Resources.LoadAll<GameObject>("Prefabs"))
+        {
+            print(obj.name);
+            if (obj.GetComponent<NetworkIdentity>() == null) obj.AddComponent<NetworkIdentity>();
+            ClientScene.RegisterPrefab(obj, NetworkHash128.Parse(obj.name));
+        }
         //string host = string.Format("Host started on {0}:{1}", global.netManager.networkAddress, global.netManager.networkPort);
         //print(host);
 

@@ -25,9 +25,11 @@ public class SetupLocal : NetworkBehaviour
             rotation.y = 180;
             transform.rotation = Quaternion.Euler(rotation);
             transform.SetParent(player.transform);
+        
         }
-        GameObject vehicle = global.networkVehicle.GetComponent<NetworkVehicle>().create();
+        GameObject vehicle = GetComponent<NetworkVehicle>().create();
         vehicle.transform.SetParent(transform);
+        
     }
 
     private void attachPlayer(ref GameObject player)
