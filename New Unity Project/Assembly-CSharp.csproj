@@ -94,10 +94,13 @@
     <Compile Include="Assets\Scripts\Selected\Networking\NetworkVehicle.cs" />
     <Compile Include="Assets\Scripts\Selected\Networking\SetupLocal.cs" />
     <Compile Include="Assets\Scripts\Selected\Networking\SetupNetworkConnection.cs" />
+    <Compile Include="Assets\Scripts\Selected\Networking\Spawner.cs" />
+    <Compile Include="Assets\Scripts\Selected\Networking\VehicleMessage.cs" />
     <Compile Include="Assets\Scripts\Selected\Select.cs" />
     <Compile Include="Assets\Scripts\Selected\Tile.cs" />
     <Compile Include="Assets\Scripts\Selected\TileSelected.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
+    <Compile Include="Assets\Scripts\VehicleMessage.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

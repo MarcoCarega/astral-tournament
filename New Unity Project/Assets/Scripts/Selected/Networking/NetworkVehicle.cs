@@ -67,6 +67,8 @@ public class NetworkVehicle : NetworkBehaviour
         cannon = net.cannon;
     }
 
+    
+
     public GameObject create()
     {
         //if (changed)

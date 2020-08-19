@@ -27,8 +27,8 @@ public class SetupLocal : NetworkBehaviour
             transform.SetParent(player.transform);
         
         }
-        GameObject vehicle = GetComponent<NetworkVehicle>().create();
-        vehicle.transform.SetParent(transform);
+        //GameObject vehicle = GetComponent<NetworkVehicle>().create();
+        //vehicle.transform.SetParent(transform);
         
     }
 

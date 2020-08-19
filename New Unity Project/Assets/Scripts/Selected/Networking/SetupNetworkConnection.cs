@@ -26,9 +26,11 @@ public class SetupNetworkConnection : MonoBehaviour
             Destroy(global.lobby);
         }
         //global.lobby = new GameObject("Lobby").AddComponent<NetworkLobbyManager>();
-        global.netManager = new GameObject().AddComponent<NetworkManager>();
+        global.netManager = new GameObject().AddComponent<AstralNetwork>();
+        global.netManager.gameObject.AddComponent<NetworkManagerHUD>();
         //NetworkManagerHUD hud= global.netManager.gameObject.AddComponent<NetworkManagerHUD>();
         //hud.showGUI = false;
+        global.netManager.autoCreatePlayer = false;
         global.netManager.name = "NetworkManager";
         matchMaker = new GameObject().AddComponent<MatchMaker>();
         matchMaker.name = "MatchMaker";
