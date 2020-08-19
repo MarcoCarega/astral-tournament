@@ -39,9 +39,24 @@ public class NetworkVehicle : NetworkBehaviour
         armor.transform.SetParent(board.transform);
         VehicleComponent cannon = createCannon(set["cannon"]);
         cannon.transform.SetParent(board.transform);*/
-        
+
         //GameObject board = new GameObject("NetVehicle");
-        
+       /*if(changed)
+        {
+            Destroy(board);
+            Dictionary<string, VehicleComponent> set = new Dictionary<string, VehicleComponent>();
+            set.Add("wheel", createObject(wheel));
+            set.Add("engine", createObject(engine));
+            set.Add("armor", createObject(armor));
+            set.Add("cannon", createObject(cannon));
+            Destroy(board);
+            string comps = string.Format("{0} {1} {2} {3}", wheel, engine, armor, cannon);
+            print(comps);
+            //board = GameObject.Find("NetVehicle/Board");
+            board = vehicle.build(set);
+            changed = false;
+            board.transform.SetParent(transform);
+        }*/
     }
 
     public void take(NetworkVehicle net)
