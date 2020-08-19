@@ -63,6 +63,8 @@ public class NetworkVehicle : NetworkBehaviour
             set.Add("armor", createObject(armor));
             set.Add("cannon", createObject(cannon));
             Destroy(board);
+        string comps = string.Format("{0} {1} {2} {3}",wheel,engine,armor,cannon);
+        print(comps);
             //board = GameObject.Find("NetVehicle/Board");
             board = vehicle.build(set);
             changed = false;

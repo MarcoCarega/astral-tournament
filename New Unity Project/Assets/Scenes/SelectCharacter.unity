@@ -269,7 +269,8 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.g
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114643751520937468, guid: b8387271baaa38045a069732a08b7316, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b8387271baaa38045a069732a08b7316, type: 3}
 --- !u!224 &38525812 stripped
 RectTransform:
@@ -588,7 +589,8 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.b
       value: 0.33962262
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114643751520937468, guid: b8387271baaa38045a069732a08b7316, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b8387271baaa38045a069732a08b7316, type: 3}
 --- !u!1 &238917691
 GameObject:
@@ -793,7 +795,8 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.r
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114643751520937468, guid: b8387271baaa38045a069732a08b7316, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b8387271baaa38045a069732a08b7316, type: 3}
 --- !u!1 &459740479
 GameObject:
@@ -1115,7 +1118,8 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.r
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114643751520937468, guid: b8387271baaa38045a069732a08b7316, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b8387271baaa38045a069732a08b7316, type: 3}
 --- !u!1 &769758975
 GameObject:
@@ -1420,7 +1424,8 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.g
       value: 0.25638855
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114643751520937468, guid: b8387271baaa38045a069732a08b7316, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b8387271baaa38045a069732a08b7316, type: 3}
 --- !u!1 &1481722541
 GameObject:
@@ -1871,5 +1876,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114643751520937468, guid: b8387271baaa38045a069732a08b7316, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b8387271baaa38045a069732a08b7316, type: 3}

@@ -60,7 +60,6 @@ public class SetupNetworkConnection : MonoBehaviour
         global.netManager.playerPrefab = game;
         foreach (GameObject obj in Resources.LoadAll<GameObject>("Prefabs"))
         {
-            print(obj.name);
             if (obj.GetComponent<NetworkIdentity>() == null) obj.AddComponent<NetworkIdentity>();
             ClientScene.RegisterPrefab(obj, NetworkHash128.Parse(obj.name));
         }
