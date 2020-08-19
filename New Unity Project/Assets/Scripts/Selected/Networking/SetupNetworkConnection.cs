@@ -47,6 +47,7 @@ public class SetupNetworkConnection : MonoBehaviour
     {
         Vehicle vehicle = global.GetVehicle().GetComponent<Vehicle>();
         GameObject game = vehicle.createNetworkInstance();
+        print(vehicle);
         //vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
         //vehicle.gameObject.AddComponent<NetworkTransform>();
         //game.AddComponent<Rigidbody>();
@@ -55,6 +56,7 @@ public class SetupNetworkConnection : MonoBehaviour
         //global.netManager.StartHost();
         ClientScene.RegisterPrefab(game,NetworkHash128.Parse(vehicle.name));
         
+
         global.netManager.playerPrefab = game;
         //string host = string.Format("Host started on {0}:{1}", global.netManager.networkAddress, global.netManager.networkPort);
         //print(host);

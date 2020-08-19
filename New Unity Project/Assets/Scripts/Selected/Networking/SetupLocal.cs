@@ -10,6 +10,7 @@ public class SetupLocal : NetworkBehaviour
 
     private GameObject player;
     private Global global;
+    private bool done = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,8 @@ public class SetupLocal : NetworkBehaviour
             transform.rotation = Quaternion.Euler(rotation);
             transform.SetParent(player.transform);
         }
+        GameObject vehicle = global.networkVehicle.GetComponent<NetworkVehicle>().create();
+        vehicle.transform.SetParent(transform);
     }
 
     private void attachPlayer(ref GameObject player)
@@ -38,7 +41,9 @@ public class SetupLocal : NetworkBehaviour
 
     private GameObject setupPlayer()
     {
+        
         GameObject player = new GameObject();
+        //GetComponent<NetworkVehicle>().create();
         player.name = "Player";
         Vector3 position = player.transform.position;
         position.y = 56;
@@ -73,7 +78,14 @@ public class SetupLocal : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!done && isLocalPlayer)
+        {
+            GameObject game = global.networkVehicle;
+            print(game);
+            NetworkVehicle net = game.GetComponent<NetworkVehicle>();
+            GetComponent<NetworkVehicle>().take(net);
+            done = true;
+        }
     }
 
 }

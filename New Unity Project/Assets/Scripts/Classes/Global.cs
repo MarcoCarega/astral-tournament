@@ -27,6 +27,8 @@ public class Global : MonoBehaviour
     private GameObject player;
     public NetworkLobbyManager lobby;
 
+    public GameObject networkVehicle;
+
     public static Global Instance
     {
         get

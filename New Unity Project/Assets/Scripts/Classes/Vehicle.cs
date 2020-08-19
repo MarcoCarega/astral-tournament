@@ -43,8 +43,9 @@ public class Vehicle : MonoBehaviour
     {
         first = true;
         global = Global.Instance;
-        net = GameObject.Find("NetVehicle");
-        print(net);
+        net = GameObject.Find("Astromachine(Clone)/NetVehicle");
+        global.networkVehicle = net;
+        //print(net);
     }
 
     // Update is called once per frame
@@ -61,39 +62,51 @@ public class Vehicle : MonoBehaviour
             //set = Select.getSet();
             Destroy(board);
             global.removeVehicle();
-            board = createObject(PrimitiveType.Cube, "Board", 5, 1, 7);
-            for (int i = 0; i < 4; i++)
-            {
-                wheel = createWheel(set["wheel"],i);
-                wheel.transform.SetParent(board.transform);
-            }
-            engine = createEngine(set["engine"]);
-            engine.transform.SetParent(board.transform);
-            armor = createArmor(set["armor"]);
-            armor.transform.SetParent(board.transform);
-            cannon = createCannon(set["cannon"]);
-            cannon.transform.SetParent(board.transform);
+            board=build(set);
             adjustVehicleForUI();
             setStats(set);
             //global.addVehicle(GetComponent<Vehicle>());
+            NetworkVehicle.changed = Select.changed;
             Select.changed = false;
+            if (net != null) Destroy(net);
             net = createNetVehicle();
+            //net.GetComponent<NetworkVehicle>().create();
             DontDestroyOnLoad(net);
+            global.networkVehicle = net;
+            net.transform.SetParent(transform);
         }
+    }
+
+    public GameObject build(Dictionary<string,VehicleComponent> set)
+    {
+        //Destroy(board);
+        //global.removeVehicle();
+        GameObject board = createObject(PrimitiveType.Cube, "Board", 5, 1, 7);
+        for (int i = 0; i < 4; i++)
+        {
+            wheel = createWheel(board,set["wheel"], i);
+            wheel.transform.SetParent(board.transform);
+        }
+        engine = createEngine(board,set["engine"]);
+        engine.transform.SetParent(board.transform);
+        armor = createArmor(set["armor"]);
+        armor.transform.SetParent(board.transform);
+        cannon = createCannon(board,set["cannon"]);
+        cannon.transform.SetParent(board.transform);
+        return board;
     }
 
     private GameObject createNetVehicle()
     {
-        GameObject game = GameObject.Find("NetVehicle");
-        if (game != null) Destroy(game);
+        GameObject game;// = GameObject.Find("NetVehicle");
+        //if (game != null) Destroy(game);
         game = new GameObject("NetVehicle");
         NetworkVehicle net = game.AddComponent<NetworkVehicle>();
-        print(game);
-        print(cannon);
         net.cannon = cannon.name;
         net.armor = armor.name;
         net.engine = engine.name;
         net.wheel = wheel.name;
+        net.vehicle = this;
         return game;
     }
 
@@ -120,7 +133,7 @@ public class Vehicle : MonoBehaviour
         //return game;
     }
 
-    private VehicleComponent createCannon(VehicleComponent vehicleComponent)
+    private VehicleComponent createCannon(GameObject board,VehicleComponent vehicleComponent)
     {
         VehicleComponent cannonInstance = copyObject(vehicleComponent);
         cannonInstance.transform.position = new Vector3(0, 0, 0);
@@ -142,7 +155,7 @@ public class Vehicle : MonoBehaviour
         return armorInstance;
     }
 
-    private VehicleComponent createEngine(VehicleComponent vehicleComponent)
+    private VehicleComponent createEngine(GameObject board,VehicleComponent vehicleComponent)
     {
         VehicleComponent engineInstance = copyObject(vehicleComponent);
         engineInstance.transform.position = new Vector3(0, 0, 0);
@@ -151,7 +164,7 @@ public class Vehicle : MonoBehaviour
         return engineInstance;
     }
 
-    private VehicleComponent createWheel(VehicleComponent component, int index)
+    private VehicleComponent createWheel(GameObject board,VehicleComponent component, int index)
     {
         VehicleComponent wheelInstance=copyObject(component);
         wheelInstance.transform.position = new Vector3(0, 0, 0);
