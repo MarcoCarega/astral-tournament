@@ -77,6 +77,9 @@
     <Compile Include="Assets\Scripts\MenuUI\PlayClick.cs" />
     <Compile Include="Assets\Scripts\MenuUI\StopClick.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\NETMIRROR\MirrorConnSetup.cs" />
+    <Compile Include="Assets\Scripts\NETMIRROR\MirrorManager.cs" />
+    <Compile Include="Assets\Scripts\NETMIRROR\SetupVehicle.cs" />
     <Compile Include="Assets\Scripts\PassComponents.cs" />
     <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStatus.cs" />
@@ -91,11 +94,11 @@
     <Compile Include="Assets\Scripts\Selected\Networking\NetworkVehicle.cs" />
     <Compile Include="Assets\Scripts\Selected\Networking\SetupLocal.cs" />
     <Compile Include="Assets\Scripts\Selected\Networking\SetupNetworkConnection.cs" />
-    <Compile Include="Assets\Scripts\Selected\Networking\Spawner.cs" />
     <Compile Include="Assets\Scripts\Selected\Select.cs" />
     <Compile Include="Assets\Scripts\Selected\Tile.cs" />
     <Compile Include="Assets\Scripts\Selected\TileSelected.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
+    <Compile Include="Assets\Veicolo.cs" />
     <None Include="Assets\ScriptTemplates\54-Mirror__Network Room Manager-NewNetworkRoomManager.cs.txt" />
     <None Include="Assets\ScriptTemplates\55-Mirror__Network Room Player-NewNetworkRoomPlayer.cs.txt" />
     <None Include="Assets\Mirror\Readme.txt" />
@@ -126,19 +129,19 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.26f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -341,20 +344,20 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.26f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.CecilX">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.dll</HintPath>
     </Reference>
     <Reference Include="Mono.CecilX.Mdb">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.CecilX.Pdb">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.CecilX.Rocks">
-      <HintPath>D:/Progetti/Unity/astral/astral-tournament/New Unity Project/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.StandardEvents">
+      <HintPath>C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.26f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

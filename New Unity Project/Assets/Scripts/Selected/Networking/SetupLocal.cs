@@ -32,6 +32,7 @@ public class SetupLocal : NetworkBehaviour
         
     }
 
+    /*
     private void attachPlayer(ref GameObject player) //attacca il veicolo al player
     {
         //transform.position = player.transform.position;
@@ -40,7 +41,7 @@ public class SetupLocal : NetworkBehaviour
         setupCamera();
 
     }
-
+   
     private GameObject setupPlayer() //Prepara il giocatore
     {
         
@@ -76,7 +77,7 @@ public class SetupLocal : NetworkBehaviour
         camera.transform.LookAt(transform.position);
         return camera;
     }
-
+     */
     // Update is called once per frame
     void Update()
     {

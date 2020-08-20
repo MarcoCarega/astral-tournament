@@ -26,11 +26,11 @@ public class SetupNetworkConnection : MonoBehaviour
             Destroy(global.lobby);
         }
         //global.lobby = new GameObject("Lobby").AddComponent<NetworkLobbyManager>();
-        global.netManager = new GameObject().AddComponent<AstralNetwork>(); //creazione NetworkManager (qui in versione custom)
+        global.netManager = new GameObject().AddComponent<NetworkManager>(); //creazione NetworkManager (qui in versione custom)
         global.netManager.gameObject.AddComponent<NetworkManagerHUD>();
         //NetworkManagerHUD hud= global.netManager.gameObject.AddComponent<NetworkManagerHUD>();
         //hud.showGUI = false;
-        global.netManager.autoCreatePlayer = false;
+        // Per spawnare a comando metti a false: global.netManager.autoCreatePlayer = false;
         global.netManager.name = "NetworkManager";
         matchMaker = new GameObject().AddComponent<MatchMaker>(); //creazione matchmaker
         matchMaker.name = "MatchMaker";

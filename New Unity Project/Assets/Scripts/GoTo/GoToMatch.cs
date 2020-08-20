@@ -18,6 +18,7 @@ public class GoToMatch : MonoBehaviour
     void Start()
     {
         done = false;
+        //disattivo bottone mettendo fuori da UI
         nextPos = next.transform.position;
         next.transform.position = new Vector3(nextPos.x + 50, nextPos.y, nextPos.z);
         global = Global.Instance;
@@ -29,7 +30,8 @@ public class GoToMatch : MonoBehaviour
         Arena arena = global.GetArena();
         arena.transform.SetParent(null);
         DontDestroyOnLoad(arena);
-        SceneManager.LoadScene("MatchmakeScene");
+        //SceneManager.LoadScene("MatchmakeScene");
+        SceneManager.LoadScene("NetTestMarco");
     }
 
     // Update is called once per frame

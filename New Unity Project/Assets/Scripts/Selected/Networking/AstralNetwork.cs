@@ -5,16 +5,16 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 //NetworkManager custom
 public class AstralNetwork : NetworkManager
-{
+{/*
     //funzione eseguita quando un server aggiunge un giocatore, 'soluzione' trovata sul forum di unity chiesta da uno con un problema simile al nostro
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
     {
         //public override void OnServerAddPlayer(UnityEngine.Networking.NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader){
         base.OnServerAddPlayer(conn, playerControllerId, extraMessageReader);
 
-        AstralMessage message = extraMessageReader.ReadMessage<AstralMessage>();
+        //AstralMessage message = extraMessageReader.ReadMessage<AstralMessage>();
         
-        Debug.Log("Cannon: " + message.cannon); //per adesso la prova è stata fatta solo sul cannone
+        //Debug.Log("Cannon: " + message.cannon); //per adesso la prova è stata fatta solo sul cannone
 
         //playerPrefab = entityToSpawn [selectedClass];
 
@@ -42,4 +42,5 @@ public class AstralNetwork : NetworkManager
     {
         
     }
+    */
 }

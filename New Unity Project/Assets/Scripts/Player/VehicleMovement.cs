@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//scrpt per il moviment del veicolo
+//script per il moviment del veicolo
 public class VehicleMovement : MonoBehaviour
 {
     private Global global;
@@ -29,33 +29,37 @@ public class VehicleMovement : MonoBehaviour
         global = Global.Instance;
         velocity = new Vector3(0, 0, 0);
         vehicle = global.GetVehicle().GetComponent<Vehicle>();
-        //vehicle = GameObject.Find("Astromachine(Clone)").GetComponent<Vehicle>();
-        //vehicle.transform.position = transform.position;
-        //vehicle.transform.SetParent(transform);
+        /*
+        vehicle = GameObject.Find("Astromachine(Clone)").GetComponent<Vehicle>();
+        vehicle.transform.position = transform.position;
+        vehicle.transform.SetParent(transform);
         
-        //Vector3 vehiclePos = vehicle.transform.localRotation.eulerAngles;
-        //vehiclePos.y += 90;
-        //vehicle.transform.localRotation = Quaternion.Euler(vehiclePos);
-        //vehicle.transform.rotation = transform.rotation;
-        //Vector3 rotation = vehicle.transform.rotation.eulerAngles;
-        //rotation.y += 90;
-        //vehicle.transform.rotation = Quaternion.Euler(rotation);
+        Vector3 vehiclePos = vehicle.transform.localRotation.eulerAngles;
+        vehiclePos.y += 90;
+        vehicle.transform.localRotation = Quaternion.Euler(vehiclePos);
+        vehicle.transform.rotation = transform.rotation;
+        Vector3 rotation = vehicle.transform.rotation.eulerAngles;
+        rotation.y += 90;
+        vehicle.transform.rotation = Quaternion.Euler(rotation);
+        */
         vehicle.transform.localScale *= 0.2f;
         speed = vehicle.speed;
-        //vehicle.transform.position = new Vector3(-20,-5,-78);
-        //vehicle.transform.SetParent(transform);
-        //Vector3 rotation = transform.rotation.eulerAngles;
-        //rotation.y -= 90;
-        //transform.rotation = Quaternion.Euler(rotation);
-        //GameObject cameraPos = new GameObject();
-        //Vector3 pos = transform.position;
-        //pos.x -= 20;
-        //pos.y += 20;
-        //cameraPos.transform.position = pos;
-        //cameraPos.transform.SetParent(vehicle.transform);
-        //cameraPos.transform.position = new Vector3(0, 77, 0);
-        //cameraPos.transform.position = new Vector3(20,100, 0);
-        //setupCamera(cameraPos);
+        /*
+        vehicle.transform.position = new Vector3(-20,-5,-78);
+        vehicle.transform.SetParent(transform);
+        Vector3 rotation = transform.rotation.eulerAngles;
+        rotation.y -= 90;
+        transform.rotation = Quaternion.Euler(rotation);
+        GameObject cameraPos = new GameObject();
+        Vector3 pos = transform.position;
+        pos.x -= 20;
+        pos.y += 20;
+        cameraPos.transform.position = pos;
+        cameraPos.transform.SetParent(vehicle.transform);
+        cameraPos.transform.position = new Vector3(0, 77, 0);
+        cameraPos.transform.position = new Vector3(20,100, 0);
+        setupCamera(cameraPos);
+        */
     }
 
     // Update is called once per frame
