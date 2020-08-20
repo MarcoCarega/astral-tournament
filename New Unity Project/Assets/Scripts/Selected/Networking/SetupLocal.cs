@@ -3,24 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-
+//Script legato al veicolo
 public class SetupLocal : NetworkBehaviour
 {
     
 
-    private GameObject player;
+    private GameObject player; //GameObject che indica il giocatore
     private Global global;
     private bool done = false;
     // Start is called before the first frame update
     void Start()
     {
         global = Global.Instance;
-        if (isLocalPlayer)
+        if (isLocalPlayer) // se il giocatore è locale setta il veicolo come figlio del player, in modo che la telecamera lo segua
         {
             GameObject player = GameObject.Find("Player");
             /*if (player == null) player = setupPlayer();
             attachPlayer(ref player);*/
-            transform.position = player.transform.position;
+            transform.position = player.transform.position; //il veicolo è al contrario, quindi viene girato
             Vector3 rotation = transform.rotation.eulerAngles;
             rotation.y = 180;
             transform.rotation = Quaternion.Euler(rotation);
@@ -32,7 +32,7 @@ public class SetupLocal : NetworkBehaviour
         
     }
 
-    private void attachPlayer(ref GameObject player)
+    private void attachPlayer(ref GameObject player) //attacca il veicolo al player
     {
         //transform.position = player.transform.position;
         //transform.rotation = player.transform.rotation;
@@ -41,30 +41,30 @@ public class SetupLocal : NetworkBehaviour
 
     }
 
-    private GameObject setupPlayer()
+    private GameObject setupPlayer() //Prepara il giocatore
     {
         
-        GameObject player = new GameObject();
+        GameObject player = new GameObject(); //creazione
         //GetComponent<NetworkVehicle>().create();
         player.name = "Player";
         Vector3 position = player.transform.position;
         position.y = 56;
-        player.transform.position = position;
+        player.transform.position = position; //modifica posizione
         VehicleMovement move = player.AddComponent<VehicleMovement>();
         //setupMovement(ref move);
         player.AddComponent<PlayerStatus>();
         Camera camera = setupCamera();
         camera.transform.SetParent(transform);
-        transform.SetParent(player.transform);
+        transform.SetParent(player.transform);//camera e veicolo diventano figlio del giocatore
         Vector3 rotation = transform.rotation.eulerAngles;
         rotation.y = 180;
         transform.rotation = Quaternion.Euler(rotation);
-        transform.position=player.transform.position;
+        transform.position=player.transform.position;//gira il veicolo
         return player;
     }
 
    
-    private Camera setupCamera()
+    private Camera setupCamera()//prepara la camera, momentaneamente è in terza persona e guarda il veicolo
     {
         Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
         //camera.gameObject.name = "Camera";
@@ -80,7 +80,7 @@ public class SetupLocal : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!done && isLocalPlayer)
+        if(!done && isLocalPlayer) //costruisce il veicolo (lo fa una sola volta)
         {
             GameObject game = global.networkVehicle;
             print(game);

@@ -45,10 +45,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 681, y: 498}
+  m_MinSize: {x: 679, y: 498}
   m_MaxSize: {x: 14002, y: 14048}
   vertical: 0
-  controlID: 33
+  controlID: 41
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -217,10 +217,10 @@ MonoBehaviour:
     y: 0
     width: 1225
     height: 731
-  m_MinSize: {x: 406, y: 498}
+  m_MinSize: {x: 404, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 34
+  controlID: 42
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,10 +242,10 @@ MonoBehaviour:
     y: 0
     width: 1225
     height: 449
-  m_MinSize: {x: 406, y: 224}
-  m_MaxSize: {x: 8006, y: 4024}
+  m_MinSize: {x: 404, y: 224}
+  m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 35
+  controlID: 43
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -267,13 +267,13 @@ MonoBehaviour:
     height: 449
   m_MinSize: {x: 204, y: 224}
   m_MaxSize: {x: 4004, y: 4024}
-  m_ActualView: {fileID: 18}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
   - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 2
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -329,7 +329,7 @@ MonoBehaviour:
     x: 303.2
     y: 73.6
     width: 918
-    height: 423
+    height: 429
   m_PersistentViewDataDictionary: {fileID: 0}
 --- !u!114 &14
 MonoBehaviour:
@@ -369,20 +369,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Progetti\Unity\astral\astral-tournament\New Unity Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 143}
-    m_SelectedIDs: da0a0000
-    m_LastClickedID: 2778
-    m_ExpandedIDs: 00000000060a0000d60a0000c60b0000500c0000540c00000c2b00000e2b0000102b0000122b0000142b0000162b0000182b00001a2b00001c2b00001e2b0000202b000000ca9a3b
+    scrollPos: {x: 0, y: 155}
+    m_SelectedIDs: 5a0c0000
+    m_LastClickedID: 3162
+    m_ExpandedIDs: 000000000c0a0000dc0a0000cc0b0000560c00005a0c0000182b00001a2b00001c2b00001e2b0000202b0000222b0000242b0000262b0000282b00002a2b00002c2b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -410,7 +410,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000060a0000d60a0000c60b0000500c0000540c00000c2b00000e2b0000102b0000122b0000142b0000162b0000182b00001a2b00001c2b00001e2b0000202b0000
+    m_ExpandedIDs: 000000000c0a0000dc0a0000cc0b0000560c00005a0c0000182b00001a2b00001c2b00001e2b0000202b0000222b0000242b0000262b0000282b00002a2b00002c2b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -454,7 +454,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 11}
+      m_ClientGUIView: {fileID: 5}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -529,9 +529,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 746f0000
-      m_LastClickedID: 28532
-      m_ExpandedIDs: 6894ffff169cffff049effffbea0ffffc8a0ffff48a1ffff4ca1ffffb0a4ffff38a5ffffaea5ffff2ea6ffff1aa7ffffb2a7ffff8cabffffaaabfffffaacffff0aadffff94adffffc4adffffe4aefffffaaeffffb4afffff2ab0ffff34b0ffffaab0ffff96b1ffffa0b1ffff2eb2fffff2b5ffff10b6ffff60b7ffff70b7fffffab7ffff2ab8ffff4ab9ffff60b9ffff8ebaffff7abbffff84bbffff8ebbffff96bbffff62bfffff80bfffffd4c0ffffe8c0ffff76c1ffffb2c1ffffd6c2fffff2c2ffffeac3ffff2cc4ffff88c4ffffe2c4ffff00c5ffff44c6ffff54c6ffffdec6ffff16c7ffff36c8ffff54c8ffff82caffff16cbffff34cbffff84ccffff94ccffff1ecdffff4ecdffff6eceffff84ceffff3cd0ffff1cd4ffff3ad4ffff8ad5ffff9ad5ffff24d6ffff5cd6ffff7cd7ffff94d7ffff58d9ffff44daffff4edaffff58daffff60daffff40deffff5edeffffaedfffffbedfffff48e0ffff80e0ffffa0e1ffffb8e1ffffc2e2ffff38e3ffff42e3ffffb8e3ffffc2e4ffffc6e4ffff9ee8ffffbce8ffff0ceaffff1ceaffffa6eaffffd6eafffff6ebffff0cecffff56ecffff8aecffff54f2ffff54f3ffffd4f3ffff4af4ffff36f5ffffcef5ffffdefbffff2e300000e4320000b6390000e84000001a4800003e5b0000c661000052680000ae6800006c6f0000
+      m_SelectedIDs: cc0b0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: defbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

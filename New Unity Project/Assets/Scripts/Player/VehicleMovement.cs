@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//scrpt per il moviment del veicolo
 public class VehicleMovement : MonoBehaviour
 {
     private Global global;
     private Vehicle vehicle;
-    private Vector3 velocity;
-    private int curve;
+    private Vector3 velocity; // velocità del veicolo
+    private int curve; //direzione della rotazione
     //private int forward;
-    private float speed;
+    private float speed; //limite di velocità del veicolo
 
     [Range(0f, 1f)]
-    public float drag;
-    private void setupCamera(GameObject cameraPos)
+    public float drag; //attrito da applicare
+    private void setupCamera(GameObject cameraPos) //setta la  camera, non utilizzato e spostato in setuplocal
     {
         Camera camera = GetComponentInChildren<Camera>();
         camera.transform.rotation = cameraPos.transform.rotation;
@@ -61,25 +62,25 @@ public class VehicleMovement : MonoBehaviour
     void Update()
     {
         float acc = vehicle.acceleration;
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)) //va avanti
         {
             //forward = 1;
             velocity.z += getVelocity(acc);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S)) //va indietro
         {
             //forward = -1;
             velocity.z -= getVelocity(acc);
             //vehicle.transform.Translate(velocity);
         }
         else velocity *= (1 - drag);
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A)) //gira a sinistra (destra se è in retromarcia)
         {
             //curve = -1;
             float angle = -getAngle(velocity.z);
             transform.Rotate(0, angle, 0);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))//gira a destra (sinistra se in retromarcia)
         {
             //curve = 1;
             float angle = getAngle(velocity.z);
@@ -99,7 +100,7 @@ public class VehicleMovement : MonoBehaviour
 
     }
 
-    private float getAngle(float velocity)
+    private float getAngle(float velocity) //calcolo dell'angolo di rotazione
     {
         curve = 0;
         if (velocity > 0) curve = 1;
@@ -110,7 +111,7 @@ public class VehicleMovement : MonoBehaviour
         return angle;
     }
 
-    private float getVelocity(float acceleration)
+    private float getVelocity(float acceleration) //calcolo velocità
     {
         return acceleration*5 * Time.deltaTime;
     }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+//Prova
+//Classe che spawna i giocatori che si connettono
+
 public class Spawner : NetworkBehaviour
 {
     private NetworkManager netManager;
@@ -20,7 +23,7 @@ public class Spawner : NetworkBehaviour
         
     }
 
-    void SpawnVehicle(NetworkVehicle vehicle)
+    void SpawnVehicle(NetworkVehicle vehicle) //Spawna il veicolo
     {
 
         AstralMessage astral = new AstralMessage(vehicle);
@@ -29,9 +32,8 @@ public class Spawner : NetworkBehaviour
 
     }
 
-    private void OnConnectedToHost()
+    private void OnConnectedToServer() //callback eseguita quando un client si connette al server
     {
         SpawnVehicle(vehicle);
-        
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//Classe che assembla il veicolo
 public class Vehicle : MonoBehaviour
 {
     /*public VehicleComponent cannon;
@@ -21,22 +21,22 @@ public class Vehicle : MonoBehaviour
     public bool changed;
     private bool first;
     private Global global;
-    public GameObject statsView;
+    public GameObject statsView; //tabellone statistiche veicolo
 
-    public float speed=0;
+    public float speed=0; //statistiche
     public float acceleration=0;
     public float attack=0;
     public float defense=0;
     public float maneuverability=0;
-    public bool blocked;
-    private Dictionary<string, VehicleComponent> set;
+    public bool blocked; //se true, il veicolo non può più essere modificato
+    private Dictionary<string, VehicleComponent> set; //dizionario con le componenti;
 
-    private VehicleComponent cannon;
+    private VehicleComponent cannon; // componenti
     private VehicleComponent armor;
     private VehicleComponent engine;
     private VehicleComponent wheel;
 
-    private GameObject net;
+    private GameObject net; //variabile con i nomi delle componenti usate (deve essere poi inviato in rete)
 
     // Start is called before the first frame update
     void Start()
@@ -51,25 +51,25 @@ public class Vehicle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        set = Select.getSet();
-        if (first)
+        set = Select.getSet(); //Prende i componenti del veicolo dai selettori
+        if (first) //Alla prima esecuzione di Update il veicolo non è ancora assemblato
         {
-            Select.changed = true;
+            Select.changed = true; //quindi, si setta questo valore a true per poter entrare nell'if che c'è dopo
             first = false;
         }
-        if (Select.changed && !blocked && set.Count==4)
+        if (Select.changed && !blocked && set.Count==4) //si entra in questo if solo se almeno un componente è cambiato e il veicolo non è bloccato
         {
             //set = Select.getSet();
-            Destroy(board);
+            Destroy(board);     //se è già presente un veicolo assemblato, questo viene distrutto e rimosso da Global
             global.removeVehicle();
-            board=build(set);
-            adjustVehicleForUI();
-            setStats(set);
+            board=build(set); // costruzione effettiva
+            adjustVehicleForUI(); //prepara il veicolo costruito per essere mostrato nell'UI
+            setStats(set); //aggiorna le statistiche nel tabellone dell'UI
             //global.addVehicle(GetComponent<Vehicle>());
-            NetworkVehicle.changed = Select.changed;
+            NetworkVehicle.changed = Select.changed; //se c'è stato un cambiamento, allora bisogna anche aggiornare le variabili delle componenti
             Select.changed = false;
-            if (net != null) Destroy(net);
-            net = createNetVehicle();
+            if (net != null) Destroy(net); 
+            net = createNetVehicle(); //risetta le variabili per le componenti utilizzate
             //net.GetComponent<NetworkVehicle>().create();
             DontDestroyOnLoad(net);
             global.networkVehicle = net;
@@ -77,12 +77,12 @@ public class Vehicle : MonoBehaviour
         }
     }
 
-    public GameObject build(Dictionary<string,VehicleComponent> set)
+    public GameObject build(Dictionary<string,VehicleComponent> set) //assemblaggio effettivo
     {
         //Destroy(board);
         //global.removeVehicle();
-        GameObject board = createObject(PrimitiveType.Cube, "Board", 5, 1, 7);
-        for (int i = 0; i < 4; i++)
+        GameObject board = createObject(PrimitiveType.Cube, "Board", 5, 1, 7); //Creazione della board
+        for (int i = 0; i < 4; i++) //crea 4 ruote
         {
             wheel = createWheel(board,set["wheel"], i);
             wheel.transform.SetParent(board.transform);
@@ -101,7 +101,7 @@ public class Vehicle : MonoBehaviour
         GameObject game;// = GameObject.Find("NetVehicle");
         //if (game != null) Destroy(game);
         game = new GameObject("NetVehicle");
-        NetworkVehicle net = game.AddComponent<NetworkVehicle>();
+        NetworkVehicle net = game.AddComponent<NetworkVehicle>(); //crea il gameobject e aggiunge la compoente NetworkVehicle
         net.cannon = cannon.name;
         net.armor = armor.name;
         net.engine = engine.name;
@@ -176,7 +176,7 @@ public class Vehicle : MonoBehaviour
         return wheelInstance;
     }
 
-    private Vector3 setupPos(GameObject board, VehicleComponent game, Vector3 pos, int i)
+    private Vector3 setupPos(GameObject board, VehicleComponent game, Vector3 pos, int i) // setta la posizione delle route
     {
         float x = board.transform.localScale.x / 2 + game.transform.localScale.y;
         float z = board.transform.localScale.z / 2 + game.transform.localScale.y;
@@ -203,7 +203,7 @@ public class Vehicle : MonoBehaviour
         return pos;
     }
 
-    private VehicleComponent copyObject(VehicleComponent component)
+    private VehicleComponent copyObject(VehicleComponent component) // copia l'oggetto dato
     {
         return Instantiate(component) as VehicleComponent;
     }
@@ -216,7 +216,7 @@ public class Vehicle : MonoBehaviour
         return game;
     }
 
-    private void setStats(Dictionary<string,VehicleComponent> set)
+    private void setStats(Dictionary<string,VehicleComponent> set) //aggiorna le statistiche
     {
         if(set.Count==4)
         {
@@ -233,7 +233,7 @@ public class Vehicle : MonoBehaviour
         }
     }
 
-    private void statString(float stat, string name)
+    private void statString(float stat, string name) //scrive la statistica data sul sul tabellone
     {
         Text[] comps = statsView.GetComponentsInChildren<Text>();
         foreach (Text comp in comps)

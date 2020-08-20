@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StopClick : MonoBehaviour
+public class StopClick : MonoBehaviour //classe che rappresenta il bottone del menu per uscire dal gioco (quello rosso)
 {
     public Button button;
     // Start is called before the first frame update

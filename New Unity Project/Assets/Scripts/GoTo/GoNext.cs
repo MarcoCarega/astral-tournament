@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+//classe che permette il passaggio dal menu alla selezione personaggio
 public class GoNext : MonoBehaviour
 {
     public Button next;
@@ -24,7 +24,7 @@ public class GoNext : MonoBehaviour
         global = Global.Instance;
     }
 
-    private void onClick()
+    private void onClick() //se premuto, si salva il personaggio in global e si va all schermata del veicolo
     {
         Character c = global.GetCharacter();
         c.transform.SetParent(null);
@@ -35,9 +35,9 @@ public class GoNext : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(global.hasCharacter())
+        if(global.hasCharacter()) //se un personaggio è stato scelto, si mostra a schermo la foto del personaggio scelto ( per ora si mostra il colore dato che le immagini non sono ancora pronte) 
         {
-            if (!done)
+            if (!done) //viene abilitato il bottone per andare alla prossima schermata
             { 
                 next.transform.position = nextPos;
                 done = true;

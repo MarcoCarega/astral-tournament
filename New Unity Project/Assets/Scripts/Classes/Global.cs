@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+//Classe con singleton per tenere in memoria tutte le cose necessarie come il personaggio scelto o il veicolo assemblato
 public class Global : MonoBehaviour
 {
     private static Global instance;
@@ -14,11 +15,11 @@ public class Global : MonoBehaviour
 
     private Vehicle vehicle;
 
-    private GameObject group;
+    private GameObject group; //variabile di appoggio che serve per non creare infinite istanze di un gameobject scelto
 
     private Arena arena;
 
-    private static List<GameObject> queue;
+    private static List<GameObject> queue; //attualmente non usata, era una porva che volevo fare
 
     public NetworkManager netManager;
 

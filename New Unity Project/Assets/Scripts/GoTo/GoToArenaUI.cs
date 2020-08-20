@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
+//Classe che permette di abilitare il bottone per andare alla selezione arena
 public class GoToArenaUI : MonoBehaviour
 {
 
@@ -21,8 +21,11 @@ public class GoToArenaUI : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(onClick);
     }
 
-    private void onClick()
-    {
+    private void onClick()//quando cliccato si prepara il veicolo al networking (non più necessario dato che non si utilizza il network vehicle ora)
+    {//dopo si salva il veicolo in global e si passa alla scena della selezione arena
+
+
+
         //astroMachine.transform.SetParent(null);
         //passStats(ref astroMachine);
         //global.addVehicle(astroMachine);

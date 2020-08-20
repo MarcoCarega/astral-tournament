@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
-
+//Script che prepata tutto il necessario per il networking
 public class SetupNetworkConnection : MonoBehaviour
 {
     private Global global;
@@ -26,13 +26,13 @@ public class SetupNetworkConnection : MonoBehaviour
             Destroy(global.lobby);
         }
         //global.lobby = new GameObject("Lobby").AddComponent<NetworkLobbyManager>();
-        global.netManager = new GameObject().AddComponent<AstralNetwork>();
+        global.netManager = new GameObject().AddComponent<AstralNetwork>(); //creazione NetworkManager (qui in versione custom)
         global.netManager.gameObject.AddComponent<NetworkManagerHUD>();
         //NetworkManagerHUD hud= global.netManager.gameObject.AddComponent<NetworkManagerHUD>();
         //hud.showGUI = false;
         global.netManager.autoCreatePlayer = false;
         global.netManager.name = "NetworkManager";
-        matchMaker = new GameObject().AddComponent<MatchMaker>();
+        matchMaker = new GameObject().AddComponent<MatchMaker>(); //creazione matchmaker
         matchMaker.name = "MatchMaker";
         DontDestroyOnLoad(matchMaker);
         global.matchMaker = matchMaker;
@@ -40,15 +40,15 @@ public class SetupNetworkConnection : MonoBehaviour
         //GameObject game= setupPlayer();
         //print(game);
         //DontDestroyOnLoad(game);
-        global.netManager.playerPrefab =setupPlayer();
+        global.netManager.playerPrefab =setupPlayer(); //passa al network manager il prefab del giocatore
         //global.netManager.autoCreatePlayer = false;
         //global.netManager = netManager;
     }
 
-    private GameObject setupPlayer()
+    private GameObject setupPlayer() //crea il prefab del player
     {
-        Vehicle vehicle = global.GetVehicle().GetComponent<Vehicle>();
-        GameObject game = vehicle.createNetworkInstance();
+        Vehicle vehicle = global.GetVehicle().GetComponent<Vehicle>(); 
+        GameObject game = vehicle.createNetworkInstance(); 
         print(vehicle);
         //vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
         //vehicle.gameObject.AddComponent<NetworkTransform>();
@@ -56,12 +56,12 @@ public class SetupNetworkConnection : MonoBehaviour
         //vehicle.gameObject.AddComponent<VehicleMovement>().enabled = false;
         game.AddComponent<SetupLocal>();
         //global.netManager.StartHost();
-        ClientScene.RegisterPrefab(game,NetworkHash128.Parse(vehicle.name));
+        ClientScene.RegisterPrefab(game,NetworkHash128.Parse(vehicle.name)); //registra il prefab del player
         
 
         global.netManager.playerPrefab = game;
-        foreach (GameObject obj in Resources.LoadAll<GameObject>("Prefabs"))
-        {
+        foreach (GameObject obj in Resources.LoadAll<GameObject>("Prefabs")) //registra i prefab dei componenti, soluzione che apparentemente funziona solo se l'editor è client e la build è host 
+        {                                                                    //(con 2 editor non funziona, dice che non riesce a trovarli)
             print(obj.name);
             if (obj.GetComponent<NetworkIdentity>() == null) obj.AddComponent<NetworkIdentity>();
             ClientScene.RegisterPrefab(obj, NetworkHash128.Parse(obj.name));

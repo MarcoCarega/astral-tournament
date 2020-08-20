@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 
+//Classe che effettua il matchmaking
 public class MatchMaker : MonoBehaviour
 {
     void Start()

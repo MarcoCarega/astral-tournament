@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//NON PIù UTILIZZATA: la nuova classe è Vehicle
+//Classe per assemblare il veicolo
+
 public class Assemble : MonoBehaviour
 {
     public List<Text> stats;

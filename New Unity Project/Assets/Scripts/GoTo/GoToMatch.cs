@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//classe che abilita il tasto 
 public class GoToMatch : MonoBehaviour
 {
     public Button next;
@@ -23,7 +24,7 @@ public class GoToMatch : MonoBehaviour
         next.onClick.AddListener(onClick);
     }
 
-    private void onClick()
+    private void onClick() //quando il pulsante viene cliccato, si salva l'arena e si passa alla scena del matchmaking
     {
         Arena arena = global.GetArena();
         arena.transform.SetParent(null);
@@ -32,7 +33,7 @@ public class GoToMatch : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //se è stata selezionata un'arena, allora il bottone viene abilitato
     {
         if(global.hasArena() && !done)
         {

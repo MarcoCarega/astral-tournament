@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//classe delle componenti del veicolo
 public class VehicleComponent : MonoBehaviour
 {
-    public List<float> values;
+    public List<float> values; //statistiche 
 
     // Start is called before the first frame update
     void Start()

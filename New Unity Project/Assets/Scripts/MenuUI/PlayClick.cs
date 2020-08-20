@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayClick : MonoBehaviour
+public class PlayClick : MonoBehaviour // classe che indica i bottoni del menu (quelli verdi)
 {
     // Start is called before the first frame update
     public Button button;
@@ -18,14 +18,14 @@ public class PlayClick : MonoBehaviour
             button.onClick.AddListener(onClick);
     }
 
-    public void onClick()
+    public void onClick() //quando il bottone viene cliccato, si passa alla schemata successiva
     {
         global.mode = getText();
         //DontDestroyOnLoad(mode);
         SceneManager.LoadScene("SelectCharacter", LoadSceneMode.Single);
     }
 
-    private string getText()
+    private string getText() 
     {
         return button.name;
     }

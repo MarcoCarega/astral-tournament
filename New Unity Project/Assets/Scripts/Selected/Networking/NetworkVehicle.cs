@@ -69,7 +69,7 @@ public class NetworkVehicle : NetworkBehaviour
 
     
 
-    public GameObject create()
+    public GameObject create() //carica i prefab relativi ai componenti e avvia la costruzione del veicolo
     {
         //if (changed)
         //{
@@ -81,7 +81,7 @@ public class NetworkVehicle : NetworkBehaviour
             set.Add("cannon", createObject(cannon));
             Destroy(board);
         string comps = string.Format("{0} {1} {2} {3}",wheel,engine,armor,cannon);
-        print(comps);
+        print(comps); //prova per vedere se sono quelli corretti
             //board = GameObject.Find("NetVehicle/Board");
             board = vehicle.build(set);
             changed = false;
@@ -89,7 +89,7 @@ public class NetworkVehicle : NetworkBehaviour
         return board;
     }
 
-    private VehicleComponent createObject(string name)
+    private VehicleComponent createObject(string name) //Carica il prefab avente il nome dato;
     {
         string newName = name.Replace("(Clone)", "");
 
