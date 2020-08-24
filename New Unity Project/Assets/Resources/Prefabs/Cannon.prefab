@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 914243271018083679}
   - component: {fileID: 997044967135888388}
   - component: {fileID: 9177881157760354544}
-  - component: {fileID: 114613711441437644}
+  - component: {fileID: 114087679826284506}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -94,7 +94,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114613711441437644
+--- !u!114 &114087679826284506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

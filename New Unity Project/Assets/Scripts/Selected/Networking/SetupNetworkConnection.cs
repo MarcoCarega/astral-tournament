@@ -48,7 +48,7 @@ public class SetupNetworkConnection : MonoBehaviour
     private GameObject setupPlayer() //crea il prefab del player
     {
         Vehicle vehicle = global.GetVehicle().GetComponent<Vehicle>(); 
-        GameObject game = vehicle.createNetworkInstance(); 
+        GameObject game = vehicle.createNetworkInstance().gameObject; 
         print(vehicle);
         //vehicle.gameObject.AddComponent<NetworkIdentity>().localPlayerAuthority = true;
         //vehicle.gameObject.AddComponent<NetworkTransform>();

@@ -36,15 +36,18 @@ public class Vehicle : MonoBehaviour
     private VehicleComponent engine;
     private VehicleComponent wheel;
 
-    private GameObject net; //variabile con i nomi delle componenti usate (deve essere poi inviato in rete)
+    private NetworkVehicle net; //variabile con i nomi delle componenti usate (deve essere poi inviato in rete)
 
     // Start is called before the first frame update
     void Start()
     {
         first = true;
         global = Global.Instance;
-        net = GameObject.Find("Astromachine(Clone)/NetVehicle");
-        global.networkVehicle = net;
+        GameObject game = GameObject.Find("NetVehicle");
+        if (game != null) net = game.GetComponent<NetworkVehicle>();
+        else net = new GameObject("NetVehicle").AddComponent<NetworkVehicle>();
+        DontDestroyOnLoad(net);
+        //global.networkVehicle = net;
         //print(net);
     }
 
@@ -59,6 +62,7 @@ public class Vehicle : MonoBehaviour
         }
         if (Select.changed && !blocked && set.Count==4) //si entra in questo if solo se almeno un componente è cambiato e il veicolo non è bloccato
         {
+            setComponentNet(set);
             //set = Select.getSet();
             Destroy(board);     //se è già presente un veicolo assemblato, questo viene distrutto e rimosso da Global
             global.removeVehicle();
@@ -68,13 +72,21 @@ public class Vehicle : MonoBehaviour
             //global.addVehicle(GetComponent<Vehicle>());
             NetworkVehicle.changed = Select.changed; //se c'è stato un cambiamento, allora bisogna anche aggiornare le variabili delle componenti
             Select.changed = false;
-            if (net != null) Destroy(net); 
+            /*if (net != null) Destroy(net); 
             net = createNetVehicle(); //risetta le variabili per le componenti utilizzate
             //net.GetComponent<NetworkVehicle>().create();
             DontDestroyOnLoad(net);
-            global.networkVehicle = net;
-            net.transform.SetParent(transform);
+            global.networkVehicle = net;*/
+            //net.transform.SetParent(transform);
         }
+    }
+
+    private void setComponentNet(Dictionary<string,VehicleComponent> set)
+    {
+        net.cannon = set["cannon"].name;
+        net.armor = set["armor"].name;
+        net.engine = set["engine"].name;
+        net.wheel = set["wheel"].name;
     }
 
     public GameObject build(Dictionary<string,VehicleComponent> set) //assemblaggio effettivo
@@ -106,7 +118,7 @@ public class Vehicle : MonoBehaviour
         net.armor = armor.name;
         net.engine = engine.name;
         net.wheel = wheel.name;
-        net.vehicle = this;
+        //net.vehicle = this;
         return game;
     }
 
@@ -233,6 +245,8 @@ public class Vehicle : MonoBehaviour
         }
     }
 
+
+
     private void statString(float stat, string name) //scrive la statistica data sul sul tabellone
     {
         Text[] comps = statsView.GetComponentsInChildren<Text>();
@@ -241,7 +255,7 @@ public class Vehicle : MonoBehaviour
                 comp.GetComponentsInChildren<Text>()[1].text = stat.ToString();
     }
 
-    public GameObject createNetworkInstance()
+    public NetworkVehicle createNetworkInstance()
     {
         return net;
     }

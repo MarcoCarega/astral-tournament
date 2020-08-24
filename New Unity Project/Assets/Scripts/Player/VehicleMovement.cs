@@ -65,6 +65,7 @@ public class VehicleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float acc = vehicle.acceleration;
         if (Input.GetKey(KeyCode.W)) //va avanti
         {
@@ -94,7 +95,7 @@ public class VehicleMovement : MonoBehaviour
 
         //velocity *= (1 - drag);
         velocity.z = (velocity.z > 0) ? Mathf.Min(velocity.z, speed) : Mathf.Max(velocity.z, -speed);
-        //print(velocity);
+        print(velocity);
         transform.Translate(velocity);
         //velocity.x += getVelocity(acc);
         //print(velocity);

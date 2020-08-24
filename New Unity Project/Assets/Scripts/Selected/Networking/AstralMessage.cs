@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+using UnityEngine.Networking;
+
 //Classe per inviare i componenti del veicolo attraverso un messaggio
 public class AstralMessage : MessageBase
 {

@@ -86,9 +86,9 @@ public class SetupLocal : NetworkBehaviour
             GameObject game = global.networkVehicle;
             print(game);
             NetworkVehicle net = game.GetComponent<NetworkVehicle>();
-            GetComponent<NetworkVehicle>().take(net);
-            GameObject netVehicle = GetComponent<NetworkVehicle>().create();
-            netVehicle.transform.SetParent(transform);
+            //GetComponent<NetworkVehicle>().take(net);
+            //GameObject netVehicle = GetComponent<NetworkVehicle>().create();
+            //netVehicle.transform.SetParent(transform);
             done = true;
         }
     }
