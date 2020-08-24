@@ -95,7 +95,7 @@ public class VehicleMovement : MonoBehaviour
 
         //velocity *= (1 - drag);
         velocity.z = (velocity.z > 0) ? Mathf.Min(velocity.z, speed) : Mathf.Max(velocity.z, -speed);
-        print(velocity);
+
         transform.Translate(velocity);
         //velocity.x += getVelocity(acc);
         //print(velocity);

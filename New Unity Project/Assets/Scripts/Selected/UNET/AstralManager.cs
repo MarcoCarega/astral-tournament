@@ -14,6 +14,7 @@ public class AstralManager : NetworkManager
 
     private void Start()
     {
+        /*
         List<GameObject> spawnObj = Resources.LoadAll<GameObject>("Prefabs").ToList();
         foreach (GameObject obj in spawnObj)
         {
@@ -21,21 +22,33 @@ public class AstralManager : NetworkManager
             ClientScene.RegisterPrefab(obj, NetworkHash128.Parse(obj.name));
             spawnPrefabs.Add(obj);
         }
+        */
     }
 
     public override void OnStartServer()
     {
-        base.OnStartServer();
+        //base.OnStartServer();
         print("START SERVER");
         List<GameObject> spawnObj = Resources.LoadAll<GameObject>("Prefabs").ToList();
-        /*foreach (GameObject obj in spawnObj)
+        foreach (GameObject obj in spawnObj)
         {
-            obj.AddComponent<NetworkIdentity>();
-            ClientScene.RegisterPrefab(obj, NetworkHash128.Parse(obj.name));
+            //obj.AddComponent<NetworkIdentity>();
+           // ClientScene.RegisterPrefab(obj, NetworkHash128.Parse(obj.name));
             spawnPrefabs.Add(obj);
-        }*/
+        }
         NetworkServer.RegisterHandler(playerMex, OnCreate);
-        //NetworkServer.RegisterHandler(playerMex, OnCreate);
+        
+    }
+    public override void OnStartClient(NetworkClient client)
+    {
+        print("START CLIENT");
+        //base.OnStartClient(client);
+        GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs");
+        foreach (GameObject obj in prefabs)
+        {
+           // obj.AddComponent<NetworkIdentity>();
+            ClientScene.RegisterPrefab(obj);
+        }
     }
 
     private void OnCreate(NetworkMessage netMsg)
@@ -49,8 +62,8 @@ public class AstralManager : NetworkManager
         passValues(ref net, message);
        
         short id = game.GetComponent<NetworkIdentity>().playerControllerId;
-        id++;
-        id++;
+        //id++;
+        //id++;
         NetworkServer.AddPlayerForConnection(conn,game,id);
         //NetworkServer.Spawn(game.gameObject);
     }
@@ -104,18 +117,7 @@ public class AstralManager : NetworkManager
         player.wheel = net.wheel;
     }
 
-    public override void OnStartClient(NetworkClient client)
-    {
-        print("START CLIENT");
-        base.OnStartClient(client);
-        GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs");
-        foreach(GameObject obj in prefabs)
-        {
-            obj.AddComponent<NetworkIdentity>();
-            ClientScene.RegisterPrefab(obj, NetworkHash128.Parse(obj.name));
-        }
-    }
-
+   
 
     // Client callbacks
     public override void OnClientConnect(NetworkConnection conn)

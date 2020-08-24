@@ -23,8 +23,9 @@ public class SetupLocalPlayer : NetworkBehaviour
         if (isLocalPlayer)
         {
             player = GameObject.Find("Player");
+            SetComponents();
         }
-        SetComponents();
+        
     }
 
     void Update()

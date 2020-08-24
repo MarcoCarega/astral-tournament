@@ -30,7 +30,7 @@ public class SetupNetwork : MonoBehaviour
         Vehicle vehicle = global.GetVehicle();
         NetworkVehicle net = vehicle.createNetworkInstance();
         //net.AddComponent<NetworkIdentity>();
-        net.gameObject.AddComponent<SetupLocalPlayer>();
+        //net.gameObject.AddComponent<SetupLocalPlayer>();
         ClientScene.RegisterPrefab(net.gameObject, NetworkHash128.Parse(net.name));
         return net.gameObject;
     }

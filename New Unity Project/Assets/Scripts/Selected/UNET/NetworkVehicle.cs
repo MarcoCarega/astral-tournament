@@ -84,9 +84,8 @@ public class NetworkVehicle : NetworkBehaviour
         }
         if (velocity.z > 0) velocity.z = Mathf.Min(velocity.z, speed);
         else velocity.z = Mathf.Max(velocity.z, -speed);
-        print("NO DRAG: " + velocity);
        // velocity *= (1 - drag);
-        print("DRAG: "+velocity);
+
         //transform.Translate(velocity);
         if(velocity.magnitude!=0) CmdMove(velocity);
         //CmdRotate(transform.rotation.eulerAngles);

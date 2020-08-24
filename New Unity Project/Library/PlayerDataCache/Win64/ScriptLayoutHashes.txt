@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-D:/Progetti/Unity/astral/astral-tournament/New Unity Project/ATournament/New Unity Project.exe
+C:/Users/rizzi/Documents/GitHub/astral-tournament/New Unity Project/Builds/New Unity Project.exe
 SceneListBegin?
 Assets/Scenes/MenuScene.unity
 Assets/Scenes/BuildVehicle.unity
