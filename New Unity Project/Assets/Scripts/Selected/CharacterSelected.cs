@@ -29,7 +29,7 @@ public class CharacterSelected : MonoBehaviour
 
     private void onCLick()
     {
-        global.addCharacter(character);
+        global.character = character.name;
     }
 
     // Update is called once per frame

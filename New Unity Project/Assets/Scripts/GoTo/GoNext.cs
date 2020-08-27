@@ -26,9 +26,9 @@ public class GoNext : MonoBehaviour
 
     private void onClick() //se premuto, si salva il personaggio in global e si va all schermata del veicolo
     {
-        Character c = global.GetCharacter();
+        /*Character c = global.character
         c.transform.SetParent(null);
-        DontDestroyOnLoad(c);
+        DontDestroyOnLoad(c);*/
         SceneManager.LoadScene("BuildVehicle");
     }
 
@@ -42,7 +42,7 @@ public class GoNext : MonoBehaviour
                 next.transform.position = nextPos;
                 done = true;
             }
-            Character c = global.GetCharacter();
+            Character c = Resources.Load<GameObject>("Prefabs/"+global.character).GetComponent<Character>();
             selectedCharacter.color = new Color(c.color.r, c.color.g, c.color.b, 1);
             story.text = c.charactName;
             //story.enabled = true;

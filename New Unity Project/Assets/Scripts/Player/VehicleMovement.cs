@@ -28,7 +28,7 @@ public class VehicleMovement : MonoBehaviour
     {
         global = Global.Instance;
         velocity = new Vector3(0, 0, 0);
-        vehicle = global.GetVehicle().GetComponent<Vehicle>();
+        //vehicle = global.GetVehicle().GetComponent<Vehicle>();
         /*
         vehicle = GameObject.Find("Astromachine(Clone)").GetComponent<Vehicle>();
         vehicle.transform.position = transform.position;

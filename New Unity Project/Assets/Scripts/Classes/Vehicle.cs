@@ -43,10 +43,11 @@ public class Vehicle : MonoBehaviour
     {
         first = true;
         global = Global.Instance;
-        GameObject game = GameObject.Find("NetVehicle");
+        GameObject game = GameObject.Find("NetVehicle(Clone)");
         if (game != null) net = game.GetComponent<NetworkVehicle>();
-        else net = new GameObject("NetVehicle").AddComponent<NetworkVehicle>();
+        else net =Resources.Load<GameObject>("Prefabs/NetVehicle").GetComponent<NetworkVehicle>();
         DontDestroyOnLoad(net);
+        global.networkVehicle = net.gameObject;
         //global.networkVehicle = net;
         //print(net);
     }
@@ -65,7 +66,7 @@ public class Vehicle : MonoBehaviour
             setComponentNet(set);
             //set = Select.getSet();
             Destroy(board);     //se è già presente un veicolo assemblato, questo viene distrutto e rimosso da Global
-            global.removeVehicle();
+            //global.removeVehicle();
             board=build(set); // costruzione effettiva
             adjustVehicleForUI(); //prepara il veicolo costruito per essere mostrato nell'UI
             setStats(set); //aggiorna le statistiche nel tabellone dell'UI
@@ -83,10 +84,27 @@ public class Vehicle : MonoBehaviour
 
     private void setComponentNet(Dictionary<string,VehicleComponent> set)
     {
-        net.cannon = set["cannon"].name;
-        net.armor = set["armor"].name;
-        net.engine = set["engine"].name;
-        net.wheel = set["wheel"].name;
+        net.cannon = getSpawnIndex(set["cannon"]);
+        net.armor = getSpawnIndex(set["armor"]);
+        net.engine = getSpawnIndex(set["engine"]);
+        net.wheel = getSpawnIndex(set["wheel"]);
+    }
+
+    private int getSpawnIndex(VehicleComponent comp)
+    {
+        bool end = false;
+        int index = -1;
+        CustomManager netManager = GameObject.Find("NetworkManager").GetComponent<CustomManager>();
+        for (int i = 0; i < netManager.spawnPrefabs.Count&& !end; i++)
+        {
+            //print(comp + " -- " + netManager.spawnPrefabs[i]);
+            if (comp.name.Equals(netManager.spawnPrefabs[i].name))
+            {
+                index = i;
+                end = true;
+            }
+        }
+        return index;
     }
 
     public GameObject build(Dictionary<string,VehicleComponent> set) //assemblaggio effettivo
@@ -114,10 +132,10 @@ public class Vehicle : MonoBehaviour
         //if (game != null) Destroy(game);
         game = new GameObject("NetVehicle");
         NetworkVehicle net = game.AddComponent<NetworkVehicle>(); //crea il gameobject e aggiunge la compoente NetworkVehicle
-        net.cannon = cannon.name;
-        net.armor = armor.name;
-        net.engine = engine.name;
-        net.wheel = wheel.name;
+        net.cannon = getSpawnIndex(cannon);
+        net.armor = getSpawnIndex(armor);
+        net.engine = getSpawnIndex(engine);
+        net.wheel = getSpawnIndex(wheel);
         //net.vehicle = this;
         return game;
     }

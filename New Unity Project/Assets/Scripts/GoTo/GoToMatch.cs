@@ -27,9 +27,9 @@ public class GoToMatch : MonoBehaviour
 
     private void onClick() //quando il pulsante viene cliccato, si salva l'arena e si passa alla scena del matchmaking
     {
-        Arena arena = global.GetArena();
+        /*string arena = global.arena;
         arena.transform.SetParent(null);
-        DontDestroyOnLoad(arena);
+        DontDestroyOnLoad(arena);*/
         //SceneManager.LoadScene("MatchmakeScene");
         SceneManager.LoadScene("MatchmakeScene");
     }

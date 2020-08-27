@@ -20,7 +20,7 @@ public class PlayClick : MonoBehaviour // classe che indica i bottoni del menu (
 
     public void onClick() //quando il bottone viene cliccato, si passa alla schemata successiva
     {
-        global.mode = getText();
+        global.mode = button.GetComponentInChildren<Text>().text;
         //DontDestroyOnLoad(mode);
         SceneManager.LoadScene("SelectCharacter", LoadSceneMode.Single);
     }

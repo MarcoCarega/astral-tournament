@@ -18,7 +18,7 @@ public class ArenaSelected : MonoBehaviour
 
     private void onClick()
     {
-        global.addArena(arena);
+        global.arena = arena.name;
     }
 
     // Update is called once per frame
