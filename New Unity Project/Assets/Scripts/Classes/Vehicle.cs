@@ -84,10 +84,10 @@ public class Vehicle : MonoBehaviour
 
     private void setComponentNet(Dictionary<string,VehicleComponent> set)
     {
-        net.cannon = getSpawnIndex(set["cannon"]);
-        net.armor = getSpawnIndex(set["armor"]);
-        net.engine = getSpawnIndex(set["engine"]);
-        net.wheel = getSpawnIndex(set["wheel"]);
+        global.cannon=net.cannon = getSpawnIndex(set["cannon"]);
+        global.armor=net.armor = getSpawnIndex(set["armor"]);
+        global.engine=net.engine = getSpawnIndex(set["engine"]);
+        global.wheel=net.wheel = getSpawnIndex(set["wheel"]);
     }
 
     private int getSpawnIndex(VehicleComponent comp)

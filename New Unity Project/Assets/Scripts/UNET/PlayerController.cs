@@ -22,10 +22,9 @@ public class PlayerController : NetworkBehaviour
             NetworkVehicle net = GetComponent<NetworkVehicle>();
             CmdSetComponents(net.cannon, net.armor, net.engine, net.wheel);
         }
-        else
+        else if(!hasAuthority)
         {
-            print("NO LOCAL CLIENT!");
-            //createVehicle();
+            createVehicle();
         }
     }
 
@@ -38,31 +37,26 @@ public class PlayerController : NetworkBehaviour
     [Command]
     public void CmdSetComponents(int cannon,int armor,int engine,int wheel)
     {
-        if (!isServer) return;
         this.cannon = cannon;
         this.armor = armor;
         this.engine = engine;
         this.wheel = wheel;
         print("CreateVehicle() Command...");
-        //createVehicle();
+        if(!isClient) createVehicle();
         RpcSetComponents(cannon, armor, engine, wheel);
     }
 
     [ClientRpc]
     public void RpcSetComponents(int cannon, int armor, int engine, int wheel)
     {
-        if (isClient)
-        {
-            print("CANNONS: "+this.cannon + "----" + cannon);
-            this.cannon = cannon;
-            print("CANNON DOPO:" + this.cannon);
-            this.armor = armor;
-            this.engine = engine;
-            this.wheel = wheel;
-            print("createVehicle RPC...");
-            createVehicle();
-        }
-        else print("was Server. No Creation!");
+        print("CANNONS: "+this.cannon + "----" + cannon);
+        this.cannon = cannon;
+        print("CANNON DOPO:" + this.cannon);
+        this.armor = armor;
+        this.engine = engine;
+        this.wheel = wheel;
+        print("createVehicle RPC...");
+        createVehicle();
     }
 
     private void createVehicle()

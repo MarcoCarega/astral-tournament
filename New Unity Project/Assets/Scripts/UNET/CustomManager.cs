@@ -10,10 +10,12 @@ public class CustomManager : NetworkManager
     public static short playerMex = MsgType.Highest + 1;
 
     public static int playerIndex;
+    public Global global;
 
     private void Start()
     {
         playerIndex = 0;
+        global = Global.Instance;
     }
 
     public override void OnStartServer()
@@ -38,6 +40,10 @@ public class CustomManager : NetworkManager
         PlayerMessage message = new PlayerMessage();
         message.controllerId = netMsg.ReadMessage<PlayerMessage>().controllerId;
         message.prefabIndex = playerIndex;
+        message.cannon = global.cannon;
+        message.armor = global.armor;
+        message.engine = global.engine;
+        message.wheel = global.wheel;
         client.Send(playerMex, message);
     }
 
@@ -53,6 +59,10 @@ public class CustomManager : NetworkManager
         print("SERVER ADD PLAYER");
         PlayerMessage message = new PlayerMessage();
         message.controllerId = playerControllerId;
+        message.cannon = global.cannon;
+        message.armor = global.armor;
+        message.engine = global.engine;
+        message.wheel = global.wheel;
         NetworkServer.SendToClient(conn.connectionId, playerMex, message);
     }
 

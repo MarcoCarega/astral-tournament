@@ -78,10 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bd3694ee744234192c0f7869aad54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannon: 4
-  armor: 1
-  engine: 7
-  wheel: 10
+  cannon: 3
+  armor: 0
+  engine: 6
+  wheel: 9
   speed: 0
   acceleration: 0
   attack: 0

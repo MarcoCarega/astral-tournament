@@ -10,7 +10,11 @@ public class Global : MonoBehaviour
     public string arena;
     public string character;
     public string mode;
-    
+
+    public int cannon;
+    public int armor;
+    public int engine;
+    public int wheel;
 
     private static Global instance;
 
