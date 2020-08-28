@@ -225,11 +225,11 @@ public class SetupLocalPlayer : NetworkBehaviour
             }
             /*for (int i = 0; i < netManager.spawnPrefabs.Count; i++)
                 print("SPAWN: "+netManager.spawnPrefabs[i]);*/
-            attack=net.attack = set["cannon"].values[0];
+            /*attack=net.attack = set["cannon"].values[0];
             defense=net.defense = set["armor"].values[0];
             speed=net.speed = set["engine"].values[0];
             acceleration=net.acceleration = set["engine"].values[1];
-            maneuverability = net.maneuverability = set["armor"].values[1] + set["wheel"].values[0];
+            maneuverability = net.maneuverability = set["armor"].values[1] + set["wheel"].values[0];*/
         }
     }
 

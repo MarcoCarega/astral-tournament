@@ -12,12 +12,6 @@ public class NetworkVehicle : NetworkBehaviour
     public int engine;
     public int wheel;
 
-    public float speed;
-    public float acceleration;
-    public float attack;
-    public float defense;
-    public float maneuverability;
-
     public float drag;
 
     public Vector3 velocity;
@@ -28,11 +22,14 @@ public class NetworkVehicle : NetworkBehaviour
     public static bool changed;
     private bool done;
 
+    public List<PowerUp> powerUps;
+
     // Start is called before the first frame update
     void Start()
     {
         velocity = new Vector3(0, 0, 0);
         drag = 0.02f;
+        powerUps = new List<PowerUp>();
     }
 
     // Update is called once per frame
@@ -42,6 +39,22 @@ public class NetworkVehicle : NetworkBehaviour
         {
             //Commands();
         }
+    }
+
+    public void AddPowerUp(PowerUp powerUp)
+    {
+        powerUps.Add(powerUp);
+    }
+
+    public void UsePowerUp(int index)
+    {
+        PowerUp powerUp = powerUps[index];
+        powerUps.RemoveAt(index);
+    }
+
+    public bool IsPowerUpFull()
+    {
+        return powerUps.Count == 4;
     }
 
     /*private void Commands()
@@ -110,5 +123,5 @@ public class NetworkVehicle : NetworkBehaviour
             transform.Rotate(0,angle,0);
     }*/
 
-   
+
 }

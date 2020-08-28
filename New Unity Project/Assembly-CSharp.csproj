@@ -88,6 +88,11 @@
     <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\Player\VehicleMovement.cs" />
+    <Compile Include="Assets\Scripts\Power Ups\Base Classes\BoxPowerUp.cs" />
+    <Compile Include="Assets\Scripts\Power Ups\Base Classes\FollowPowerUp.cs" />
+    <Compile Include="Assets\Scripts\Power Ups\Base Classes\PowerUp.cs" />
+    <Compile Include="Assets\Scripts\Power Ups\Base Classes\StatusPowerUp.cs" />
+    <Compile Include="Assets\Scripts\Power Ups\Base Classes\ThrowablePowerUp.cs" />
     <Compile Include="Assets\Scripts\Selected\ArenaSelected.cs" />
     <Compile Include="Assets\Scripts\Selected\CharacterSelected.cs" />
     <Compile Include="Assets\Scripts\Selected\Select.cs" />
