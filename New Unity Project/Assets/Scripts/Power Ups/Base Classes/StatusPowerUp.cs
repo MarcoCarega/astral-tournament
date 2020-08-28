@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class StatusPowerUp : PowerUp
 {
-    protected abstract void OnFollow();
+    protected abstract void OnStatus();
 
-    protected override void onUsePowerUp()
+    protected override void OnUsePowerUp()
     {
-        OnFollow();
+        OnStatus();
     }
 
     // Start is called before the first frame update

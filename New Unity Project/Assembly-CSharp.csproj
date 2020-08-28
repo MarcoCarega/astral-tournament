@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Networking\SetupNetworkConnection.cs" />
     <Compile Include="Assets\Scripts\PassComponents.cs" />
     <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Player\MousePointer.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\Player\VehicleMovement.cs" />
     <Compile Include="Assets\Scripts\Power Ups\Base Classes\BoxPowerUp.cs" />

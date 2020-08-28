@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript1 : MonoBehaviour
+public abstract class FollowPowerUp : PowerUp
 {
+    protected abstract void OnFollow();
+
+    protected override void OnUsePowerUp()
+    {
+        OnFollow();
+    }
+
     // Start is called before the first frame update
     void Start()
     {

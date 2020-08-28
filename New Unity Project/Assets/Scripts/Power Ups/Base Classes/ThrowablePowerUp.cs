@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public abstract class ThrowablePowerUp : PowerUp
 {
     public abstract void OnThrow();
 
-    protected override void onUsePowerUp()
+    protected override void OnUsePowerUp()
     {
         OnThrow();
     }

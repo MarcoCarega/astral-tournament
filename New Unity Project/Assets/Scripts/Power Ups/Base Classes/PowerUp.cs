@@ -5,11 +5,11 @@ using UnityEngine.Networking;
 
 public abstract class PowerUp: NetworkBehaviour
 {
-    protected abstract void onUsePowerUp();
+    protected abstract void OnUsePowerUp();
 
     public void use()
     {
-        onUsePowerUp();
+        OnUsePowerUp();
     }
 
     // Start is called before the first frame update

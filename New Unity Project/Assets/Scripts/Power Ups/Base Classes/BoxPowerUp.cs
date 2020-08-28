@@ -12,11 +12,12 @@ public class BoxPowerUp : NetworkBehaviour
             NetworkVehicle net = collision.collider.GetComponentInParent<NetworkVehicle>();
             if (net != null) //Il gigante non ha la componente NetworkVehicle, quindi se collide con questo oggetto, il valore di net sarà null
             {
-                if (net.IsPowerUpFull())
+                if (!net.IsPowerUpFull())
                 {
                     PowerUp powerUp = ChooseRandomPowerUp(); //DA IMPLEMENTARE: sceglie casualmente un powerUp;
-                    CmdTakePowerUp(collision, powerUp);
+                    //CmdTakePowerUp(collision, powerUp);
                 }
+                else Destroy(this);
                 //Distruggere l'oggetto alla fine;
             }
         }
@@ -40,28 +41,28 @@ public class BoxPowerUp : NetworkBehaviour
     }
 
     [Command]
-    public void CmdTakePowerUp(Collision collision,PowerUp powerUp)
+    public void CmdTakePowerUp()
     {
-        NetworkVehicle net = collision.collider.GetComponentInParent<NetworkVehicle>();
-        if(net.IsPowerUpFull())
+        /*NetworkVehicle net = collision.collider.GetComponentInParent<NetworkVehicle>();
+        if(!net.IsPowerUpFull())
         {
             if (!isClient)
             {
-                net.AddPowerUp(powerUp);
+               //net.AddPowerUp(powerUp);
             }
-            RpcTakePowerUp(collision,powerUp);
+           // RpcTakePowerUp(collision,powerUp);
         }
-        Destroy(this);
+        Destroy(this)*/;
     }
 
     [ClientRpc]
-    public void RpcTakePowerUp(Collision collision,PowerUp powerUp)
+    public void RpcTakePowerUp()
     {
-        NetworkVehicle net = collision.collider.GetComponentInParent<NetworkVehicle>();
-        if (net.IsPowerUpFull())
+        /*NetworkVehicle net = collision.collider.GetComponentInParent<NetworkVehicle>();
+        if (!net.IsPowerUpFull())
         {
-            net.AddPowerUp(powerUp);
+            //net.AddPowerUp(powerUp);
         }
-        Destroy(this);
+        Destroy(this);*/
     }
 }
