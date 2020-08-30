@@ -26,6 +26,7 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         global = Global.Instance;
+        global.player = GetComponent<NetworkVehicle>();
         initMovementThings();
         netManager = GameObject.Find("NetworkManager").GetComponent<CustomManager>();
         if (isLocalPlayer)

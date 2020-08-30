@@ -182,7 +182,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6220957680210931904}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -232,8 +232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee806e39648965a489e09a1b8d937e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 0}
   force: 10
   radius: 3
+  timer: 3
 --- !u!54 &3517914498828675629
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -243,7 +245,7 @@ Rigidbody:
   m_GameObject: {fileID: 6220957680210931904}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.02
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
