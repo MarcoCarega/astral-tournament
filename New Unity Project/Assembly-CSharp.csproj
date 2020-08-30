@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\Power Ups\Base Classes\PowerUp.cs" />
     <Compile Include="Assets\Scripts\Power Ups\Base Classes\StatusPowerUp.cs" />
     <Compile Include="Assets\Scripts\Power Ups\Base Classes\ThrowablePowerUp.cs" />
+    <Compile Include="Assets\Scripts\Power Ups\FogBall.cs" />
     <Compile Include="Assets\Scripts\Selected\ArenaSelected.cs" />
     <Compile Include="Assets\Scripts\Selected\CharacterSelected.cs" />
     <Compile Include="Assets\Scripts\Selected\Select.cs" />

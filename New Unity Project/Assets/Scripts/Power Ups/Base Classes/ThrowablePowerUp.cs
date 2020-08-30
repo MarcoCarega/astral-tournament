@@ -15,7 +15,7 @@ public abstract class ThrowablePowerUp : PowerUp
 
     private Vector3 CalcThrowVector()
     {
-        Vector3 center = center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        Vector3 center = center = new Vector3(Screen.width / 2, Screen.height / 2, 0); 
         //print("CENTER: " + center);
         Vector3 mouseVector = Input.mousePosition - center;
         //print("MOUSE: " + mouseVector);
