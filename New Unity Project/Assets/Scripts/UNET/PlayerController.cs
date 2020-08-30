@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour
 {
     private CustomManager netManager;
+    private Global global;
 
     [SyncVar] public int cannon; //Componenti
     [SyncVar] public int armor;
@@ -24,6 +25,7 @@ public class PlayerController : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        global = Global.Instance;
         initMovementThings();
         netManager = GameObject.Find("NetworkManager").GetComponent<CustomManager>();
         if (isLocalPlayer)
@@ -31,6 +33,7 @@ public class PlayerController : NetworkBehaviour
             print("LOCAL CLIENT!");
             NetworkVehicle net = GetComponent<NetworkVehicle>();
             CmdSetComponents(net.cannon, net.armor, net.engine, net.wheel);
+            global.player = net;
         }
         else if (!hasAuthority)
         {
@@ -44,10 +47,52 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer)
         {
             MoveCommands();
+            PowerUpCommands();
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        print("TRIGGERED");
+        if (isLocalPlayer)
+        {
+            BoxPowerUp box = other.GetComponent<BoxPowerUp>();
+            if (box != null)
+            {
+                int powerUpIndex = GetRandomPowerUpIndex();
+                CmdTakePowerUp(other.gameObject, powerUpIndex);
+            }
+        }
+    }
+
+
+    private int GetRandomPowerUpIndex()
+    {
+        return Random.Range(0, netManager.powerUpPrefabs.Count);
+    }
+
     //Comandi e RPC
+    [Command]
+    public void CmdTakePowerUp(GameObject collider,int powerUpIndex)
+    {
+        if(!isClient)
+        {
+            PowerUp powerUp = netManager.powerUpPrefabs[powerUpIndex].GetComponent<PowerUp>();
+            NetworkVehicle net = GetComponent<NetworkVehicle>();
+            if (!net.IsPowerUpFull()) net.AddPowerUp(powerUp);
+        }
+        RpcTakePowerUp(collider, powerUpIndex);
+        Destroy(collider);
+    }
+
+    [ClientRpc]
+    public void RpcTakePowerUp(GameObject collider,int powerUpIndex)
+    {
+        PowerUp powerUp = netManager.powerUpPrefabs[powerUpIndex].GetComponent<PowerUp>();
+        NetworkVehicle net = GetComponent<NetworkVehicle>();
+        if (!net.IsPowerUpFull()) net.AddPowerUp(powerUp);
+        Destroy(collider);
+    }
 
     [Command]
     public void CmdSetComponents(int cannon, int armor, int engine, int wheel)
@@ -106,6 +151,26 @@ public class PlayerController : NetworkBehaviour
         transform.Translate(velocity);
     }
 
+    [Command]
+    public void CmdUsePowerUp(int index)
+    {
+        if(!isClient)
+        {
+            PowerUp powerUp = Instantiate<PowerUp>(GetComponent<NetworkVehicle>().powerUps[index]);
+            powerUp.use();
+            GetComponent<NetworkVehicle>().powerUps.RemoveAt(index);
+        }
+        RpcUsePowerUp(index);
+    }
+
+    [ClientRpc]
+    public void RpcUsePowerUp(int index)
+    {
+        PowerUp powerUp = Instantiate<PowerUp>(GetComponent<NetworkVehicle>().powerUps[index]);
+        powerUp.use();
+        GetComponent<NetworkVehicle>().powerUps.RemoveAt(index);
+    }
+
     //Funzioni supporto
 
     private void initMovementThings()
@@ -156,7 +221,7 @@ public class PlayerController : NetworkBehaviour
     private void createVehicle()
     {
        // netManager = GameObject.Find("NetworkManager").GetComponent<CustomManager>();
-        List<GameObject> prefab = netManager.spawnPrefabs;
+        List<GameObject> prefab = netManager.componentPrefabs;
         print("WHEEL: " + prefab[wheel]);
         Dictionary<string, VehicleComponent> set = new Dictionary<string, VehicleComponent>();
         set.Add("wheel", prefab[wheel].GetComponent<VehicleComponent>());
@@ -173,6 +238,7 @@ public class PlayerController : NetworkBehaviour
     {
         //Destroy(board);
         //global.removeVehicle();
+        BoxCollider collider = GetComponent<BoxCollider>();
         GameObject board = createObject(PrimitiveType.Cube, "Board", 5, 1, 7); //Creazione della board
         for (int i = 0; i < 4; i++) //crea 4 ruote
         {
@@ -185,6 +251,12 @@ public class PlayerController : NetworkBehaviour
         armor.transform.SetParent(board.transform);
         VehicleComponent cannon = createCannon(board, set["cannon"]);
         cannon.transform.SetParent(board.transform);
+        float sizeX = board.transform.localScale.x;
+        float sizeY = board.transform.localScale.y + engine.transform.localScale.y + cannon.transform.localScale.y;
+        float sizeZ = board.transform.localScale.z;
+        collider.size = new Vector3(sizeX, sizeY*2, sizeZ);
+        collider.center = new Vector3(0, sizeY, 0);
+        gameObject.AddComponent<Rigidbody>();
         return board;
     }
 
@@ -279,6 +351,32 @@ public class PlayerController : NetworkBehaviour
         game.name = name;
         game.transform.localScale = new Vector3(x, y, z);
         return game;
+    }
+
+    private void PowerUpCommands()
+    {
+        NetworkVehicle net = GetComponent<NetworkVehicle>();
+        int powerUpIndex = 0;
+        if(Input.GetKey(KeyCode.Alpha1) && net.powerUps.Count>=1) //Selezione power up: Tasti 1234 (quelli sopra WASD)
+        {
+            powerUpIndex = 0;
+        }
+        else if (Input.GetKey(KeyCode.Alpha2) && net.powerUps.Count >= 2)
+        {
+            powerUpIndex = 1;
+        }
+        else if (Input.GetKey(KeyCode.Alpha3) && net.powerUps.Count >= 3)
+        {
+            powerUpIndex = 2;
+        }
+        else if (Input.GetKey(KeyCode.Alpha4) && net.powerUps.Count == 4)
+        {
+            powerUpIndex = 3;
+        }
+        if(Input.GetKey(KeyCode.Mouse0) && net.powerUps.Count >= 1) //Il click sinistro del mouse permette di utilizzare il power up scelto;
+        {
+            CmdUsePowerUp(powerUpIndex);
+        }
     }
 
 }

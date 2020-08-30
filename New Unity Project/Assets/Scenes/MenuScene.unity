@@ -1417,6 +1417,8 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   global: {fileID: 0}
+  powerUpPrefabs: []
+  componentPrefabs: []
 --- !u!114 &1440778479
 MonoBehaviour:
   m_ObjectHideFlags: 0

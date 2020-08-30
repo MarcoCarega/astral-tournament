@@ -95,10 +95,10 @@ public class Vehicle : MonoBehaviour
         bool end = false;
         int index = -1;
         CustomManager netManager = GameObject.Find("NetworkManager").GetComponent<CustomManager>();
-        for (int i = 0; i < netManager.spawnPrefabs.Count&& !end; i++)
+        for (int i = 0; i < netManager.componentPrefabs.Count && !end; i++)
         {
             //print(comp + " -- " + netManager.spawnPrefabs[i]);
-            if (comp.name.Equals(netManager.spawnPrefabs[i].name))
+            if (comp.name.Equals(netManager.componentPrefabs[i].name))
             {
                 index = i;
                 end = true;

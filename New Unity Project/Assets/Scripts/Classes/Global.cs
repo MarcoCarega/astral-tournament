@@ -16,6 +16,11 @@ public class Global : MonoBehaviour
     public int engine;
     public int wheel;
 
+    //public int health;
+    //public List<PowerUp> powerUps;
+
+    public NetworkVehicle player;
+
     private static Global instance;
 
     public GameObject networkVehicle;

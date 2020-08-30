@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public abstract class PowerUp: NetworkBehaviour
+public abstract class PowerUp : MonoBehaviour
 {
+    public Texture image;
+
     protected abstract void OnUsePowerUp();
 
     public void use()

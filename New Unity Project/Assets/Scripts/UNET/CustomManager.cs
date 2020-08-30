@@ -12,6 +12,9 @@ public class CustomManager : NetworkManager
     public static int playerIndex;
     public Global global;
 
+    public List<GameObject> powerUpPrefabs;
+    public List<GameObject> componentPrefabs;
+
     private void Start()
     {
         playerIndex = 0;

@@ -22,6 +22,8 @@ public class NetworkVehicle : NetworkBehaviour
     public static bool changed;
     private bool done;
 
+    public int health;
+    public int maxHealth;
     public List<PowerUp> powerUps;
 
     // Start is called before the first frame update
