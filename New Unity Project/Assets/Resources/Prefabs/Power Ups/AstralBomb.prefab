@@ -122,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6220957680210931904}
   m_LocalRotation: {x: -0.09093438, y: 0.16202052, z: -0.51409173, w: 0.83737093}
-  m_LocalPosition: {x: 0, y: 1.92, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 8042165977644166340}
@@ -233,8 +233,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  force: 10
-  radius: 3
+  forceExplosion: 0
+  radiusExplosion: 0
   timer: 3
 --- !u!54 &3517914498828675629
 Rigidbody:

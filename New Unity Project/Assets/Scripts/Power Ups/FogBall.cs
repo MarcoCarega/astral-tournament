@@ -8,6 +8,7 @@ public class FogBall : ThrowablePowerUp
 
     public override void OnThrow(Vector3 force)
     {
+        print("FOG FORCE: " + force);
         Rigidbody rigid = GetComponent<Rigidbody>();
         rigid.AddForce(force);
     }
@@ -29,11 +30,16 @@ public class FogBall : ThrowablePowerUp
         position.y += 50;
         fog.transform.position = position;
         yield return new WaitForSeconds(timer);
-        fog.GetComponent<ParticleSystem>().Stop();
+        fog.GetComponent<ParticleSystem>().Pause();
+        StartCoroutine("AwaitEnd");
         Destroy(fog);
         Destroy(gameObject);
     }
 
+    private IEnumerator AwaitEnd()
+    {
+        yield return new WaitForSeconds(5);
+    }
 
     // Start is called before the first frame update
     void Start()

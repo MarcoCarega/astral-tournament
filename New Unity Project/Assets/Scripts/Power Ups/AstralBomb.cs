@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class AstralBomb : ThrowablePowerUp
 {
-    public float force;
-    public float radius;
+    public float forceExplosion;
+    public float radiusExplosion;
     private bool explosionFlag;
     public int timer;
 
@@ -15,6 +15,7 @@ public class AstralBomb : ThrowablePowerUp
 
     public override void OnThrow(Vector3 force)
     {
+        print("BOMB FORCE: " + force);
         Rigidbody rigid = GetComponent<Rigidbody>();
         rigid.AddForce(force);
         explosionFlag = false;
@@ -28,7 +29,7 @@ public class AstralBomb : ThrowablePowerUp
         {
             Rigidbody rigid = GetComponent<Rigidbody>();
             Vector3 position = transform.position;
-            rigid.AddExplosionForce(force, position, radius);
+            rigid.AddExplosionForce(forceExplosion, position, radiusExplosion);
             Destroy(gameObject);
         }
         else if(collider is MeshCollider || collider is TerrainCollider)
@@ -58,7 +59,7 @@ public class AstralBomb : ThrowablePowerUp
             yield return new WaitForSeconds(1);
         Rigidbody rigid = GetComponent<Rigidbody>();
         Vector3 position = transform.position;
-        rigid.AddExplosionForce(force, position, radius);
+        rigid.AddExplosionForce(forceExplosion, position, radiusExplosion);
         Destroy(gameObject);
         
     }

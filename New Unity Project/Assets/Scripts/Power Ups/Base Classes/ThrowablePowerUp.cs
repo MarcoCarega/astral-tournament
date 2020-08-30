@@ -23,6 +23,10 @@ public abstract class ThrowablePowerUp : PowerUp
 
         //print("THROW: " + throwVector);
         return throwVector;
+        /*Vector3 center= new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        Vector3 mouseVector = (Input.mousePosition - center).normalized;
+        Vector3 throwVector = (Vector3.forward + mouseVector.normalized).normalized * 500;
+        return throwVector;*/
     }
 
     // Start is called before the first frame update
