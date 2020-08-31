@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,7 +21,7 @@ public class PlayClick : MonoBehaviour // classe che indica i bottoni del menu (
 
     public void onClick() //quando il bottone viene cliccato, si passa alla schemata successiva
     {
-        global.mode = button.GetComponentInChildren<Text>().text;
+        global.mode = button.GetComponentInChildren<TMP_Text>().text;
         //DontDestroyOnLoad(mode);
         SceneManager.LoadScene("SelectCharacter", LoadSceneMode.Single);
     }

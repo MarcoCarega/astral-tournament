@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour
 {
     private CustomManager netManager;
+    public List<GameObject> spawnPoints;
     private Global global;
 
     [SyncVar] public int cannon; //Componenti
@@ -21,6 +22,7 @@ public class PlayerController : NetworkBehaviour
 
     private Vector3 velocity; //Variabili per movimento
     private float drag;
+    private int spawnFlag;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,10 @@ public class PlayerController : NetworkBehaviour
         global.player = GetComponent<NetworkVehicle>();
         initMovementThings();
         netManager = GameObject.Find("NetworkManager").GetComponent<CustomManager>();
+        spawnPoints = new List<GameObject>();
+        spawnPoints.Add(GameObject.Find("SpawnPoint"));
+        spawnPoints.Add(GameObject.Find("SpawnPoint2"));
+        spawnFlag = 1;
         if (isLocalPlayer)
         {
             print("LOCAL CLIENT!");
@@ -232,6 +238,14 @@ public class PlayerController : NetworkBehaviour
         setStats(set);
         GameObject vehicle = build(set);
         vehicle.transform.SetParent(transform);
+        if(spawnFlag ==1)
+
+        {
+            vehicle.transform.position = spawnPoints[0].transform.position;
+        }
+
+        else vehicle.transform.position = spawnPoints[1].transform.position;
+
         print("CreateVehicle Succeeded!");
     }
 

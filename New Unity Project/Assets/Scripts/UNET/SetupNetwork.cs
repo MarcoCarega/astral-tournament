@@ -24,6 +24,9 @@ public class SetupNetwork : MonoBehaviour
         //netManager.spawnPrefabs.Insert(0, prefab);
         prefab.active = true;
         netManager.playerPrefab = prefab;
+        print("PLAYERPREFAB: " + netManager.playerPrefab);
+        print("ARENA: " + global.arena);
+        netManager.onlineScene = global.arena;
 
     }
 
