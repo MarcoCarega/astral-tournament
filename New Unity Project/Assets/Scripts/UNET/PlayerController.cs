@@ -6,7 +6,6 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour
 {
     private CustomManager netManager;
-    public List<GameObject> spawnPoints;
     private Global global;
 
     [SyncVar] public int cannon; //Componenti
@@ -22,7 +21,7 @@ public class PlayerController : NetworkBehaviour
 
     private Vector3 velocity; //Variabili per movimento
     private float drag;
-    private int spawnFlag;
+  
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +30,8 @@ public class PlayerController : NetworkBehaviour
         global.player = GetComponent<NetworkVehicle>();
         initMovementThings();
         netManager = GameObject.Find("NetworkManager").GetComponent<CustomManager>();
-        spawnPoints = new List<GameObject>();
-        spawnPoints.Add(GameObject.Find("SpawnPoint"));
-        spawnPoints.Add(GameObject.Find("SpawnPoint2"));
-        spawnFlag = 1;
+        
+
         if (isLocalPlayer)
         {
             print("LOCAL CLIENT!");
@@ -238,13 +235,7 @@ public class PlayerController : NetworkBehaviour
         setStats(set);
         GameObject vehicle = build(set);
         vehicle.transform.SetParent(transform);
-        if(spawnFlag ==1)
-
-        {
-            vehicle.transform.position = spawnPoints[0].transform.position;
-        }
-
-        else vehicle.transform.position = spawnPoints[1].transform.position;
+       
 
         print("CreateVehicle Succeeded!");
     }
@@ -254,7 +245,11 @@ public class PlayerController : NetworkBehaviour
         //Destroy(board);
         //global.removeVehicle();
         BoxCollider collider = GetComponent<BoxCollider>();
-        GameObject board = createObject(PrimitiveType.Cube, "Board", 5, 1, 7); //Creazione della board
+
+        Vector3 posNetVehicle = this.transform.position;
+
+        GameObject board = createObject(PrimitiveType.Cube, "Board", 5,1,7);//Creazione della board
+        board.transform.position = transform.position;
         for (int i = 0; i < 4; i++) //crea 4 ruote
         {
             VehicleComponent wheel = createWheel(board, set["wheel"], i);
@@ -262,7 +257,7 @@ public class PlayerController : NetworkBehaviour
         }
         VehicleComponent engine = createEngine(board, set["engine"]);
         engine.transform.SetParent(board.transform);
-        VehicleComponent armor = createArmor(set["armor"]);
+        VehicleComponent armor = createArmor(board,set["armor"]);
         armor.transform.SetParent(board.transform);
         VehicleComponent cannon = createCannon(board, set["cannon"]);
         cannon.transform.SetParent(board.transform);
@@ -287,7 +282,7 @@ public class PlayerController : NetworkBehaviour
     private VehicleComponent createCannon(GameObject board, VehicleComponent vehicleComponent)
     {
         VehicleComponent cannonInstance = copyObject(vehicleComponent);
-        cannonInstance.transform.position = new Vector3(0, 0, 0);
+        cannonInstance.transform.position = board.transform.position;
         cannonInstance.transform.localScale = new Vector3(1, 1, 1);
         cannonInstance.transform.localScale = 2 * cannonInstance.transform.localScale;
         float y = 3.5f * board.transform.localScale.y + 2.5f;
@@ -295,10 +290,10 @@ public class PlayerController : NetworkBehaviour
         return cannonInstance;
     }
 
-    private VehicleComponent createArmor(VehicleComponent vehicleComponent)
+    private VehicleComponent createArmor(GameObject board, VehicleComponent vehicleComponent)
     {
         VehicleComponent armorInstance = copyObject(vehicleComponent);
-        armorInstance.transform.position = new Vector3(0, 0, 0);
+        armorInstance.transform.position = board.transform.position;
         armorInstance.transform.localScale = new Vector3(6, 4, 6);
         armorInstance.transform.Translate(0, 0.5f + armorInstance.transform.localScale.y, 0);
         armorInstance.transform.localScale = armorInstance.transform.localScale / 4;
@@ -309,7 +304,7 @@ public class PlayerController : NetworkBehaviour
     private VehicleComponent createEngine(GameObject board, VehicleComponent vehicleComponent)
     {
         VehicleComponent engineInstance = copyObject(vehicleComponent);
-        engineInstance.transform.position = new Vector3(0, 0, 0);
+        engineInstance.transform.position = board.transform.position;
         engineInstance.transform.localScale = new Vector3(2, 2, 2);
         engineInstance.transform.Translate(0, engineInstance.transform.localScale.y / 2, -board.transform.localScale.z / 2);
         return engineInstance;
@@ -318,7 +313,7 @@ public class PlayerController : NetworkBehaviour
     private VehicleComponent createWheel(GameObject board, VehicleComponent component, int index)
     {
         VehicleComponent wheelInstance = copyObject(component);
-        wheelInstance.transform.position = new Vector3(0, 0, 0);
+        wheelInstance.transform.position = board.transform.position;
         wheelInstance.transform.rotation = Quaternion.Euler(90, 0, 90);
         Vector3 pos = wheelInstance.transform.position;
         wheelInstance.transform.position = setupPos(board, wheelInstance, pos, index);
@@ -360,7 +355,7 @@ public class PlayerController : NetworkBehaviour
         return Instantiate(component) as VehicleComponent;
     }
 
-    private GameObject createObject(PrimitiveType type, string name, int x, int y, int z)
+    private GameObject createObject(PrimitiveType type, string name, float x, float y, float z)
     {
         GameObject game = GameObject.CreatePrimitive(type);
         game.name = name;

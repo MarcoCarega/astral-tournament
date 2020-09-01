@@ -18,7 +18,7 @@ public class ArenaSelected : MonoBehaviour
 
     private void onClick()
     {
-        global.arena = arena.name;
+        global.arena = "SampleNetwork";
     }
 
     // Update is called once per frame

@@ -89,13 +89,9 @@
     <Compile Include="Assets\Scripts\MenuUI\PlayClick.cs" />
     <Compile Include="Assets\Scripts\MenuUI\StopClick.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
-    <Compile Include="Assets\Scripts\Networking\AstralMessage.cs" />
-    <Compile Include="Assets\Scripts\Networking\AstralNetwork.cs" />
     <Compile Include="Assets\Scripts\Networking\CreateMatch.cs" />
     <Compile Include="Assets\Scripts\Networking\JoinMatch.cs" />
     <Compile Include="Assets\Scripts\Networking\MatchMaker.cs" />
-    <Compile Include="Assets\Scripts\Networking\SetupLocal.cs" />
-    <Compile Include="Assets\Scripts\Networking\SetupNetworkConnection.cs" />
     <Compile Include="Assets\Scripts\PassComponents.cs" />
     <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Player\MousePointer.cs" />
@@ -115,8 +111,6 @@
     <Compile Include="Assets\Scripts\Selected\Tile.cs" />
     <Compile Include="Assets\Scripts\Selected\TileSelected.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
-    <Compile Include="Assets\Scripts\SpawnSystem.cs" />
-    <Compile Include="Assets\Scripts\UNET\AstralManager.cs" />
     <Compile Include="Assets\Scripts\UNET\CustomManager.cs" />
     <Compile Include="Assets\Scripts\UNET\NetworkVehicle.cs" />
     <Compile Include="Assets\Scripts\UNET\PlayerController.cs" />

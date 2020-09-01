@@ -79,10 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bd3694ee744234192c0f7869aad54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannon: 4
-  armor: 1
-  engine: 7
-  wheel: 10
+  cannon: 3
+  armor: 0
+  engine: 6
+  wheel: 9
   drag: 0
   velocity: {x: 0, y: 0, z: 0}
   health: 50
@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f9276db1bbb8c4c83bdb91cf5c0acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
   cannon: 0
   armor: 0
   engine: 0

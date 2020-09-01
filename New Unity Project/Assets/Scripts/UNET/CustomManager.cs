@@ -67,6 +67,7 @@ public class CustomManager : NetworkManager
         message.engine = global.engine;
         message.wheel = global.wheel;
         NetworkServer.SendToClient(conn.connectionId, playerMex, message);
+        //NetworkServer.AddPlayerForConnection(conn, playerPrefab, playerControllerId);
     }
 
     /*public override void OnServerReady(NetworkConnection conn)
